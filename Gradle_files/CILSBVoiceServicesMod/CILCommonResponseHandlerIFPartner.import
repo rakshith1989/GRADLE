@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scdl:import xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns1="http://CILCommonLib/CILCommonResponseHandlerIF" xmlns:scdl="http://www.ibm.com/xmlns/prod/websphere/scdl/6.0.0" xmlns:wsdl="http://www.ibm.com/xmlns/prod/websphere/scdl/wsdl/6.0.0" displayName="CILCommonResponseHandlerIFPartner" name="CILCommonResponseHandlerIFPartner">
-  <interfaces>
-    <interface xsi:type="wsdl:WSDLPortType" preferredInteractionStyle="sync" portType="ns1:CILCommonResponseHandlerIF">
-      <scdl:interfaceQualifier xsi:type="scdl:JoinTransaction" value="false"/>
-    </interface>
-  </interfaces>
-  <esbBinding xsi:type="scdl:SCAImportBinding" module="CILCommonMod" export="CILCommonResponseHandlerExport" version=""/>
-</scdl:import>
