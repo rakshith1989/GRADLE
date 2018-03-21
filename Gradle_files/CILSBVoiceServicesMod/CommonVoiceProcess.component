@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scdl:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns1="http://bell.bpm.com/esb/ComCommonLib/interface/ProcessDownStreamService/v1_0" xmlns:ns2="http://CILCommonLib" xmlns:ns3="http://CILCommonLib/CILCommonRequestHandlerIF" xmlns:ns4="http://CILCommonLib/CILCommonProcessFaultHelperIF" xmlns:ns5="http://CILCommonLib/CILCommonResponseHandlerIF" xmlns:ns6="http://CILCommonLib/CILConfigDataDynaCacheUtilIF" xmlns:process="http://www.ibm.com/xmlns/prod/websphere/scdl/business-process/6.0.0" xmlns:scdl="http://www.ibm.com/xmlns/prod/websphere/scdl/6.0.0" xmlns:wsdl="http://www.ibm.com/xmlns/prod/websphere/scdl/wsdl/6.0.0" displayName="CommonVoiceProcess" name="CommonVoiceProcess">
+  <interfaces>
+    <interface xsi:type="wsdl:WSDLPortType" preferredInteractionStyle="sync" portType="ns1:ProcessDownStreamService">
+      <scdl:interfaceQualifier xsi:type="scdl:JoinTransaction" value="true"/>
+    </interface>
+  </interfaces>
+  <references>
+    <reference name="RetrieveVoiceProfileMedPartner">
+      <interface xsi:type="wsdl:WSDLPortType" portType="ns2:CILCommonDSMediationIF"/>
+      <scdl:referenceQualifier xsi:type="scdl:SuspendTransaction" value="false"/>
+      <scdl:referenceQualifier xsi:type="scdl:Reliability"/>
+      <scdl:referenceQualifier xsi:type="scdl:DeliverAsyncAt" value="commit"/>
+      <wire target="RetrieveVoiceProfileMedPartner"/>
+    </reference>
+    <reference name="RetrieveVoiceOrderMedPartner">
+      <interface xsi:type="wsdl:WSDLPortType" portType="ns2:CILCommonDSMediationIF"/>
+      <scdl:referenceQualifier xsi:type="scdl:SuspendTransaction" value="false"/>
+      <scdl:referenceQualifier xsi:type="scdl:Reliability"/>
+      <scdl:referenceQualifier xsi:type="scdl:DeliverAsyncAt" value="commit"/>
+      <wire target="RetrieveVoiceOrderMedPartner"/>
+    </reference>
+    <reference name="CILCommonRequestHandlerIFPartner">
+      <interface xsi:type="wsdl:WSDLPortType" portType="ns3:CILCommonRequestHandlerIF"/>
+      <scdl:referenceQualifier xsi:type="scdl:SuspendTransaction" value="false"/>
+      <scdl:referenceQualifier xsi:type="scdl:Reliability"/>
+      <scdl:referenceQualifier xsi:type="scdl:DeliverAsyncAt" value="commit"/>
+      <wire target="CILCommonRequestHandlerIFPartner"/>
+    </reference>
+    <reference name="CILCommonProcessFaultHelperIFPartner">
+      <interface xsi:type="wsdl:WSDLPortType" portType="ns4:CILCommonProcessFaultHelperIF"/>
+      <scdl:referenceQualifier xsi:type="scdl:SuspendTransaction" value="false"/>
+      <scdl:referenceQualifier xsi:type="scdl:Reliability"/>
+      <scdl:referenceQualifier xsi:type="scdl:DeliverAsyncAt" value="commit"/>
+      <wire target="CILCommonProcessFaultHelperIFPartner"/>
+    </reference>
+    <reference name="CILCommonResponseHandlerIFPartner">
+      <interface xsi:type="wsdl:WSDLPortType" portType="ns5:CILCommonResponseHandlerIF"/>
+      <scdl:referenceQualifier xsi:type="scdl:SuspendTransaction" value="false"/>
+      <scdl:referenceQualifier xsi:type="scdl:Reliability"/>
+      <scdl:referenceQualifier xsi:type="scdl:DeliverAsyncAt" value="commit"/>
+      <wire target="CILCommonResponseHandlerIFPartner"/>
+    </reference>
+    <reference name="CILConfigDataDynaCacheUtilIFPartner">
+      <interface xsi:type="wsdl:WSDLPortType" portType="ns6:CILConfigDataDynaCacheUtilIF"/>
+      <scdl:referenceQualifier xsi:type="scdl:SuspendTransaction" value="false"/>
+      <scdl:referenceQualifier xsi:type="scdl:Reliability"/>
+      <scdl:referenceQualifier xsi:type="scdl:DeliverAsyncAt" value="commit"/>
+      <wire target="CILConfigDataDynaCacheUtilIFPartner"/>
+    </reference>
+  </references>
+  <implementation xsi:type="process:ProcessImplementation">
+    <scdl:implementationQualifier xsi:type="scdl:Transaction" value="global"/>
+    <process bpel="/CommonVoiceProcess.bpel"/>
+  </implementation>
+</scdl:component>

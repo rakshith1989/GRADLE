@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by Irene Chorich (BELL) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="commonResponse.xsd"/>
+	<xs:include schemaLocation="customerProfile.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+                Change History (Change Number. YYYY/MM/DD - Name - Description)
+                Irene Chorich - CIT - 2003/03/10 added BCH_ProfileResponseListType 
+                Monique Garlick - BCOP - 2004/02/20 add accountsReceivableResponseType
+               </xs:documentation>
+	</xs:annotation>
+	<!-- definition of complex types -->
+	<xs:complexType name="custProfileQueryResponseType">
+		<xs:sequence>
+			<xs:element name="responseHeader" type="responseHeaderType"/>
+			<xs:element name="responseMessageList" type="responseMessageListType" minOccurs="0"/>
+			<xs:element name="custProfileDtl" type="custProfileDtlType" minOccurs="0"/>
+			<xs:element name="BCH_ProfileResponse" type="BCH_ProfileQueryResponseListType" minOccurs="0"/>
+			<xs:element name="accountsReceivableResponse" type="accountsReceivableResponseType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BCH_ProfileQueryResponseListType">
+		<xs:sequence>
+			<xs:element name="BCH_accountDetail" type="BCH_accountDetailType" minOccurs="0"/>
+			<xs:element name="affiliateProfileDetail" type="BCH_affililateQueryResponseType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="custProfileQueryResponse" type="custProfileQueryResponseType"/>
+</xs:schema>

@@ -1,0 +1,36 @@
+ant.taskdef(name: 'servicedeploy',
+		classname: 'com.ibm.websphere.ant.tasks.ServiceDeployTask',
+		classpath: servicedeploy_classpath.getAsPath())
+
+task prepare_files {
+	doLast {
+		VoiceBPMStub_EXPORT_ENTRIES.each { module ->
+			copy {
+				from (CODE_DIR + module) {
+					excludes = ['build.gradle']
+				}
+				into VoiceBPMStub_TEMP_DIR + module
+			}
+		}
+	}
+}
+// Create and store PI into temp directory
+task create_PI(type: Zip, dependsOn: prepare_files) {
+	from VoiceBPMStub_TEMP_DIR
+	destinationDir = file(TEMP_DIR)
+	archiveName = VoiceBPMStub_PI
+}
+
+// Run serviceDeploy task with PI
+task serviceDeploy(dependsOn: create_PI) {
+	doLast {
+		ant.servicedeploy(
+			scaModule: VoiceBPMStub_SCA_MODULE, 
+			workingDirectory: TEMP_DIR, 
+			wasHome: WAS_HOME, 
+			outputApplication: VoiceBPMStub_OUTPUT_APPLICATION, 
+			keep: true
+			//ignoreErrors: true
+		)
+	}
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scdl:import xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration_6.1.0="http://www.ibm.com/xmlns/prod/websphere/j2ca/configuration/6.1.0" xmlns:http="http://www.ibm.com/xmlns/prod/websphere/scdl/http/6.1.0" xmlns:ns1="http://CILSBVoiceServicesLib/VoiceServicesIF" xmlns:scdl="http://www.ibm.com/xmlns/prod/websphere/scdl/6.0.0" xmlns:wsdl="http://www.ibm.com/xmlns/prod/websphere/scdl/wsdl/6.0.0" displayName="RetrieveVoiceProfileHTTPRef" name="RetrieveVoiceProfileHTTPRef">
+  <interfaces>
+    <interface xsi:type="wsdl:WSDLPortType" preferredInteractionStyle="sync" portType="ns1:RetrieveVoiceProfileService">
+      <scdl:interfaceQualifier xsi:type="scdl:JoinTransaction" value="false"/>
+    </interface>
+  </interfaces>
+  <esbBinding xsi:type="http:HTTPImportBinding" defaultDataBinding="RetrieveVoiceProfileCustomHTTPHandler">
+    <importInteraction endpointURL="http://dc4cjz.qc.bell.ca:8711/BchControllerCustProfServlet" httpMethod="POST"/>
+    <methodBinding method="retrieveVoiceProfile">
+      <importInteraction endpointURL="http://dc4cjz.qc.bell.ca:8711/BchControllerCustProfServlet" httpMethod="POST">
+        <requestHeaders>
+          <header>
+            <name>TargetFunctionName</name>
+            <value>retrieveVoiceProfile</value>
+          </header>
+        </requestHeaders>
+      </importInteraction>
+    </methodBinding>
+  </esbBinding>
+</scdl:import>

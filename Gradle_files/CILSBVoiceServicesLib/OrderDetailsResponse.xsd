@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by Ross (CGI INFO SYSTEMS MGMT CONS INC) -->
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by Monique Garlick (Bell) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+                Change History (Change Number. YYYY/MM/DD - Name - Description)
+                2004/09/25 - Initial Version
+                2005/11/30 - Irene Chorich 
+                			 - added totalOrderQuotes for Ford project 
+                2009/10/10 - Terrence Szeto
+                    - Moved: dueDateDtlType, workForceEnum, saveVisitIndicatorType, workUnitsEnum, intervalType, intervalList, reasonCodeModifyType definition
+                        from acsfu.xsd to OrderDetailResponse.xsd.
+					- Added: sourceOrderRequestId, classOfService, creditScreenerNumber, totalOrderQuotes, 
+                        specialBillingDataList, seeRelatedOrderList, serviceChargeList, refOfCallList, continuousBillingInfo, 
+                        customerType, languageCode, orderFidList to Order Detail response schema
+                    - Added: dueDateRemarks to dueDateDtl element
+                    - Added: nonPubPostIndr to circuitDetail element
+                    - Added: usocQualifier, usocVariableRate to usoc element
+                 2009/10/11- Irene Chorich
+                    - Added base string to dueDateRemarkLine1To7Type and dueDateRemarkLine8Type
+                    - Added actionType to specialBillingDataType
+                    - Created a type with Order Number and Telephone Number for continuousBillingInfo
+                 2009/10/20 - Terrence Szeto 
+                    - Added new type orderAccountInfoType and moved classOfService to that element
+                    - Included customerCode, customerTypeCode, creditClass, taxAssessmentRegionalCode, customerLanguageCode, taxCode to new orderAccountInfoType 
+			   2009/10/29 - Terrence Szeto - BRS R9
+					- changed sourceOrderRequestId to be a list
+					- Added IVR Contact TN element
+				2009/12/17 - Terrence Szeto - BRS R9
+					- Moved continunousBillingInfoType to common02
+				2009/12/18 - Terrence Szeto - BRS R9
+					- changed 	reference to serviceChargeListType to pendingServiceChargeListType
+				2010/01/27 - Paul Mak - BRS R9
+					- Removed sourceOrderRequestIdListType
+					- Renamed element sourceOrderRequestIdList to householdOrderIdentifierList, with 1-to-many subelements of householdOrderIdentifier
+			    2011/05/24 Ross Yu - BRS R18
+					- Moved nameDisplayOverrideType to legacyElement.xsd
+			    2011/06/10 Ross Yu - BRS R18
+					- Added orderDetailsAdditionalResponseItems, orderDetailsAdditionalResponseItemsType
+                 </xs:documentation>
+	</xs:annotation>
+	<!-- include commmon constructs-->
+	<!--xs:include schemaLocation="acsfu.xsd"/-->
+	<xs:include schemaLocation="common02.xsd"/>
+	<xs:include schemaLocation="commonResponse.xsd"/>
+	<xs:include schemaLocation="legacyOrder.xsd"/>
+	<!-- definition of complex types -->
+	<xs:complexType name="orderDetailsResponseType">
+		<xs:sequence>
+			<xs:element name="responseHeader" type="responseHeaderType"/>
+			<xs:element name="responseMessageList" type="responseMessageListType" minOccurs="0"/>
+			<xs:element name="orderDetails" type="orderDetailsType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orderDetailsType">
+		<xs:sequence>
+			<xs:element name="orderSummaryDtlBCRIS" type="orderSummaryDtlBCRISType"/>
+			<xs:element name="dueDateDtl" type="dueDateDtlType" minOccurs="0"/>
+			<xs:element name="channelRequestId" minOccurs="0"/>
+			<xs:element name="salesCode" type="salesCodeType" minOccurs="0"/>
+			<xs:element name="billNameAddress" type="billNameAddressUnfieldedType" minOccurs="0"/>
+			<xs:element name="directoryListingDtl" type="pendingOrderDirectoryListingListType" minOccurs="0"/>
+			<xs:element name="installRemarkDtl" type="installRemarkListType" minOccurs="0"/>
+			<xs:element name="callCardDtl" type="pendingOrderCallCardListType" minOccurs="0"/>
+			<xs:element name="circuitDtlList" type="pendingOrderCircuitDetailListType" minOccurs="0"/>
+			<xs:element name="totalOrderQuotes" type="totalOrderQuotesType" minOccurs="0"/>
+			<xs:element name="householdOrderIdentifierList" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This fields the HOI(s)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="householdOrderIdentifier" type="xs:string" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="nameDisplayOverride" type="nameDisplayOverrideType" minOccurs="0"/>
+			<xs:element name="ivrContactTN" type="xs:string" minOccurs="0"/>
+			<xs:element name="specialBillingDataList" type="specialBillingDataType" minOccurs="0"/>
+			<xs:element name="seeRelatedOrderList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="seeRelatedOrderNumber" type="relatedOrderType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="serviceChargeList" type="pendingServiceChargeListType" minOccurs="0"/>
+			<xs:element name="refOfCallList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="refOfCalls" type="refOfCallType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="refOfCallsRemarks" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="continuousBillingInfo" type="continousBillingInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Continuous Billing info, for Move orders, this contains the F order number on a T order, and a T order number on an F order. Useful for cases where TN of T and F order is different.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="orderFidList" type="orderFidListType" minOccurs="0"/>
+			<xs:element name="orderAccountInfo" type="orderAccountInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Order Account Information</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="orderDetailsAdditionalResponseItems" type="orderDetailsAdditionalResponseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains additional response items</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dueDateDtlType">
+		<xs:sequence>
+			<xs:element name="workForce" type="workForceEnum" minOccurs="0"/>
+			<xs:element name="workUnits" type="workUnitsEnum" minOccurs="0"/>
+			<xs:element name="interval" type="intervalList" minOccurs="0"/>
+			<xs:element name="reasonCode" type="reasonCodeModifyType" minOccurs="0"/>
+			<xs:element name="dueDateRemarks" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dueDtRmksLine4" type="dueDateRemarkLine1To7Type" minOccurs="0"/>
+						<xs:element name="dueDtRmksLine5" type="dueDateRemarkLine1To7Type" minOccurs="0"/>
+						<xs:element name="dueDtRmksLine6" type="dueDateRemarkLine1To7Type" minOccurs="0"/>
+						<xs:element name="dueDtRmksLine7" type="dueDateRemarkLine1To7Type" minOccurs="0"/>
+						<xs:element name="dueDtRmksLine8" type="dueDateRemarkLine8Type" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="workForceEnum">
+		<xs:sequence>
+			<xs:element name="saveVisitIndicator" type="saveVisitIndicatorType"/>
+			<xs:element name="workForceNameCd" type="workforceNameType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="saveVisitIndicatorType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="R"/>
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="workUnitsEnum">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="000"/>
+			<xs:enumeration value="001"/>
+			<xs:enumeration value="002"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="intervalType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="AM"/>
+			<xs:enumeration value="PM"/>
+			<xs:enumeration value="EV"/>
+			<xs:enumeration value="ES"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="intervalList">
+		<xs:list itemType="intervalType"/>
+	</xs:simpleType>
+	<xs:simpleType name="reasonCodeModifyType">
+		<xs:union memberTypes="dueDateReasonCodeType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value=" "/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="dueDateRemarkLine1To7Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="34"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dueDateRemarkLine8Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="orderFidListType">
+		<xs:sequence>
+			<xs:element name="orderFid" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="fidName"/>
+						<xs:element name="fidSeqNo" minOccurs="0"/>
+						<xs:element name="fidProfUpdInd" minOccurs="0"/>
+						<xs:element name="fidType" minOccurs="0"/>
+						<xs:element name="fidText" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="specialBillingDataType">
+		<xs:sequence>
+			<xs:element name="specialBillingData" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<!--  where is the definition for this -->
+						<xs:element name="action" type="actionType"/>
+						<xs:element name="type" type="SBATypeType"/>
+						<xs:element name="serialNumber" type="SBASerialNumberType" minOccurs="0"/>
+						<xs:element name="refNumber" type="SBAFidRefNumberType" minOccurs="0"/>
+						<xs:element name="fidName" type="fidNameType"/>
+						<xs:element name="fidText" type="SBAFidTextType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="refOfCallType">
+		<xs:sequence>
+			<xs:element name="existingTN" type="telephoneNumberType"/>
+			<xs:element name="refOfCallsCode" type="refOfCallCodeType"/>
+			<xs:element name="durationMonths" type="refOfCallDurationMonthsType" minOccurs="0"/>
+			<xs:element name="referredToTN" minOccurs="0">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="telephoneNumber" type="telephoneNumberType"/>
+						<xs:element name="internationalNumber" type="internationalNumberType"/>
+						<xs:element name="other">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="34"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="specialRemarks" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="34"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orderAccountInfoType">
+		<xs:sequence>
+			<xs:element name="classOfService" type="xs:string" minOccurs="0"/>
+			<xs:element name="customerCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="customerTypeCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="creditClass" type="xs:string" minOccurs="0"/>
+			<xs:element name="taxAssessmentRegionalCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="customerLanguageCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="taxCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orderDetailsAdditionalResponseType">
+		<xs:sequence>
+			<!--xs:element name="winbackIndr" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicates that this order is a winback order</xs:documentation>
+				</xs:annotation>
+			</xs:element-->
+			<xs:element name="winbackIndr" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicate a WINBCK or RETBEL Installation Remark exist on the Order</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="controlInfo" type="controlInfoType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="orderDetailsResponse" type="orderDetailsResponseType"/>
+</xs:schema>

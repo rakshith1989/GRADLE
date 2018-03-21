@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?><bpws:process xmlns:bpws="http://schemas.xmlsoap.org/ws/2004/03/business-process/" xmlns:ns="http://CILSBCreditDecisionMod/ReceiveCreditRequestProcessArtifacts" xmlns:ns0="http://CILComCommonLib" xmlns:ns1="http://bell.bpm.com/esb/ComCommonLib/interface/ProcessDownStreamService/v1_0" xmlns:ns10="http://CILCommonLib" xmlns:ns11="http://CILSBCreditDecisionMod" xmlns:ns12="ca/bell/com/integration" xmlns:ns13="http://CILCommonLib/ConvertUtilIF" xmlns:ns14="http://CILCommonLib/fault" xmlns:ns15="http://CILCommonLib/CILCommonRequestHandlerIF" xmlns:ns16="http://CILCommonLib/CILCommonResponseHandlerIF" xmlns:ns17="http://CILDBAdaptersV2Lib/DBCILErrorAdapterService" xmlns:ns18="http://CILCommonLib/CILCommonProcessFaultHelperIF" xmlns:ns19="http://CILCommonLib/CILConfigDataDynaCacheUtilIF" xmlns:ns2="http://CILCommonLib/HeaderAdditionalInfoBO" xmlns:ns3="http://CILCommonLib/CILCommonRequestService" xmlns:ns4="http://common.bell.ca/xml/CustomerOrderManagement" xmlns:ns5="http://ca/bell/cside/creditFlow" xmlns:ns6="http://CILSBCreditDecisionMod/ReceiveCreditRequestConvertUtil" xmlns:ns7="http://CILSBCreditDecisionMod/ReceiveCreditRequestMapperIF" xmlns:ns8="http://CILSBCreditDecisionMod/ReceiveCreditRequestService" xmlns:ns9="http://CILCommonLib/CILCommonRequestService/CILCommonResponseHandlerIF" xmlns:wpc="http://www.ibm.com/xmlns/prod/websphere/business-process/6.0.0/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.ibm.com/xmlns/prod/websphere/business-process/expression-lang/java/6.0.0/" name="CommonVoiceProcess" suppressJoinFailure="yes" targetNamespace="http://CILSBVoiceServicesMod" wpc:continueOnError="no" wpc:displayName="CommonVoiceProcess" wpc:executionMode="microflow" wpc:id="1" wpc:version="IBM_8.5.500">
+  <wpc:javaGlobals>
+    <wpc:import packages="ca.cgi.com.Xquery.Xquery"/>
+    <wpc:import packages="java.util.Arrays"/>
+    <wpc:import packages="commonj.sdo.DataObject"/>
+    <wpc:import packages="com.ibm.bpe.api.BpelException"/>
+    <wpc:import packages="ca.cgi.com.logging.COMLogger"/>
+    <wpc:import packages="ca.cgi.com.constants.CILConstants"/>
+    <wpc:import packages="ca.cgi.com.util.ComUtil"/>
+  </wpc:javaGlobals>
+  <bpws:import importType="http://schemas.xmlsoap.org/wsdl/" location="CommonVoiceProcessArtifacts.wsdl" namespace="http://CILSBCreditDecisionMod/ReceiveCreditRequestProcessArtifacts"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="CILCommonRequestHandlerOutputBO.xsd" namespace="http://CILCommonLib"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="ProcessDownStreamResponseBO.xsd" namespace="http://CILComCommonLib"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="CILCommonRequestHandlerInputBO.xsd" namespace="http://CILCommonLib"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="CreateProcessFaultInputBO.xsd" namespace="http://CILCommonLib"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="HeaderAdditionalInfoBO.xsd" namespace="http://CILCommonLib/HeaderAdditionalInfoBO"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="CILCommonDSMediationOutputBO.xsd" namespace="http://CILCommonLib"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="CILCommonResponseHandlerInputBO.xsd" namespace="http://CILCommonLib"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="ProcessDownStreamRequestBO.xsd" namespace="http://CILComCommonLib"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="CILCommonResponseHandlerOutputBO.xsd" namespace="http://CILCommonLib"/>
+  <bpws:import importType="http://schemas.xmlsoap.org/wsdl/" location="CILCommonDSMediationIF.wsdl" namespace="http://CILCommonLib"/>
+  <bpws:import importType="http://schemas.xmlsoap.org/wsdl/" location="CILCommonResponseHandlerIF.wsdl" namespace="http://CILCommonLib/CILCommonResponseHandlerIF"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="ca/bell/com/integration/processResponse.xsd" namespace="ca/bell/com/integration"/>
+  <bpws:import importType="http://schemas.xmlsoap.org/wsdl/" location="CILCommonRequestHandlerIF.wsdl" namespace="http://CILCommonLib/CILCommonRequestHandlerIF"/>
+  <bpws:import importType="http://schemas.xmlsoap.org/wsdl/" location="ProcessDownStreamService.wsdl" namespace="http://bell.bpm.com/esb/ComCommonLib/interface/ProcessDownStreamService/v1_0"/>
+  <bpws:import importType="http://schemas.xmlsoap.org/wsdl/" location="CILCommonProcessFaultHelperIF.wsdl" namespace="http://CILCommonLib/CILCommonProcessFaultHelperIF"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="fault/ProcessFaultBO.xsd" namespace="http://CILCommonLib/fault"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="CILCommonDSMediationInputBO.xsd" namespace="http://CILCommonLib"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="ca/bell/common/xml/CustomerOrderManagement/customerOrderType.xsd" namespace="http://common.bell.ca/xml/CustomerOrderManagement"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="ConfigDataInBO.xsd" namespace="http://CILCommonLib"/>
+  <bpws:import importType="http://schemas.xmlsoap.org/wsdl/" location="CILConfigDataDynaCacheUtilIF.wsdl" namespace="http://CILCommonLib/CILConfigDataDynaCacheUtilIF"/>
+  <bpws:import importType="http://www.w3.org/2001/XMLSchema" location="ConfigDataOutBO.xsd" namespace="http://CILCommonLib"/>
+  <bpws:partnerLinks>
+    <bpws:partnerLink myRole="Interface" name="ProcessDownStreamService" partnerLinkType="ns:ProcessDownStreamServicePLT" wpc:id="2"/>
+    <bpws:partnerLink name="CILCommonRequestHandlerIFPartner" partnerLinkType="ns:CILCommonRequestHandlerIFPLT" partnerRole="Interface" wpc:id="3"/>
+    <bpws:partnerLink name="CILCommonResponseHandlerIFPartner" partnerLinkType="ns:CILCommonResponseHandlerIFPLT" partnerRole="Interface" wpc:id="4"/>
+    <bpws:partnerLink name="CILCommonProcessFaultHelperIFPartner" partnerLinkType="ns:CILCommonProcessFaultHelperIFPartnerPLT" partnerRole="Reference" wpc:id="146"/>
+    <bpws:partnerLink name="RetrieveVoiceProfileMedPartner" partnerLinkType="ns:RetrieveVoiceProfileMedPLT" partnerRole="Reference" wpc:id="156"/>
+    <bpws:partnerLink name="RetrieveVoiceOrderMedPartner" partnerLinkType="ns:RetrieveVoiceOrderMedPLT" partnerRole="Reference" wpc:id="157"/>
+    <bpws:partnerLink name="CILConfigDataDynaCacheUtilIFPartner" partnerLinkType="ns:CILConfigDataDynaCacheUtilIFPartnerPLT" partnerRole="Reference" wpc:id="172"/>
+  </bpws:partnerLinks>
+  <bpws:variables>
+    <bpws:variable name="processDownStreamInput" type="ns0:ProcessDownStreamRequestBO" wpc:id="12"/>
+    <bpws:variable name="processDownStreamOutput" type="ns0:ProcessDownStreamResponseBO" wpc:id="13"/>
+    <bpws:variable name="processDownStreamAsyncInput" type="ns0:ProcessDownStreamRequestBO" wpc:id="14"/>
+    <bpws:variable name="info" type="ns2:HeaderAdditionalInfoBO" wpc:id="18"/>
+    <bpws:variable name="STATUS_CHECK_FLAG" type="xsd:boolean" wpc:id="19">
+      <bpws:from>true</bpws:from>
+    </bpws:variable>
+    <bpws:variable element="ns4:customerOrder" name="customerOrder" wpc:id="31"/>
+    <bpws:variable name="retryXML" type="xsd:string" wpc:id="39"/>
+    <bpws:variable name="requestDetailString" type="xsd:string" wpc:id="44"/>
+    <bpws:variable name="cilCommonRequestHandlerInput" type="ns10:CILCommonRequestHandlerInputBO" wpc:id="46"/>
+    <bpws:variable name="cilCommonRequestHandlerOutput" type="ns10:CILCommonRequestHandlerOutputBO" wpc:id="47"/>
+    <bpws:variable name="cilCommonResponseHandlerInput" type="ns10:CILCommonResponseHandlerInputBO" wpc:id="52"/>
+    <bpws:variable name="cilCommonResponseHandlerOutput" type="ns10:CILCommonResponseHandlerOutputBO" wpc:id="53"/>
+    <bpws:variable name="cilCommonDSMediationInput" type="ns10:CILCommonDSMediationInputBO" wpc:id="58"/>
+    <bpws:variable name="cilCommonDSMediationOutput" type="ns10:CILCommonDSMediationOutputBO" wpc:id="59"/>
+    <bpws:variable element="ns12:processResponse" name="processResponse" wpc:id="62"/>
+    <bpws:variable name="cilRequestId" type="xsd:long" wpc:id="125"/>
+    <bpws:variable name="cilProcessId" type="xsd:long" wpc:id="126"/>
+    <bpws:variable name="channelRequestId" type="xsd:string" wpc:id="127"/>
+    <bpws:variable name="PROCESS_NAME" type="xsd:string" wpc:id="128">
+      <bpws:from><![CDATA[ReceiveCreditRequestProcess]]></bpws:from>
+    </bpws:variable>
+    <bpws:variable name="processFaultBO" type="ns14:ProcessFaultBO" wpc:id="149"/>
+    <bpws:variable name="createProcessFaultInputBO" type="ns10:CreateProcessFaultInputBO" wpc:id="151"/>
+    <bpws:variable name="configDataIn" type="ns10:ConfigDataInBO" wpc:id="169"/>
+    <bpws:variable name="configDataOut" type="ns10:ConfigDataOutBO" wpc:id="170"/>
+  </bpws:variables>
+  <bpws:pick createInstance="yes" name="ReceiveChoice" wpc:displayName="Receive Choice" wpc:id="5" wpc:transactionalBehavior="commitAfter">
+    <bpws:onMessage operation="processDownStream" partnerLink="ProcessDownStreamService" portType="ns1:ProcessDownStreamService" wpc:id="6">
+      <wpc:output>
+        <wpc:parameter name="processRequest" variable="processDownStreamInput"/>
+      </wpc:output>
+      <bpws:sequence name="HiddenSequence" wpc:id="1073741831">
+        <bpws:scope name="Scope" wpc:displayName="Scope" wpc:id="134">
+          <bpws:faultHandlers>
+            <bpws:catchAll wpc:id="135">
+              <bpws:sequence name="HiddenSequence6" wpc:id="1073741960">
+                <bpws:invoke name="LogException" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="Log Exception" wpc:id="152">
+                  <wpc:script>
+                    <wpc:javaCode><![CDATA[BpelException bpelexception = getCurrentFaultAsException();
+COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance(PROCESS_NAME);
+comLogger.error(CILConstants.EBCCS, channelRequestId, cilProcessId, cilRequestId, PROCESS_NAME + " - EXCEPTION:", bpelexception);]]></wpc:javaCode>
+                  </wpc:script>
+                </bpws:invoke>
+                <bpws:assign name="AssignerrorCodeCOM2002" wpc:displayName="Assign errorCode COM2002" wpc:id="150">
+                  <bpws:copy>
+                    <bpws:from><![CDATA[COM2002]]></bpws:from>
+                    <bpws:to variable="createProcessFaultInputBO">
+                      <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[errorCode]]></bpws:query>
+                    </bpws:to>
+                  </bpws:copy>
+                  <bpws:copy>
+                    <bpws:from variable="info"/>
+                    <bpws:to variable="createProcessFaultInputBO">
+                      <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[info]]></bpws:query>
+                    </bpws:to>
+                  </bpws:copy>
+                </bpws:assign>
+                <bpws:invoke name="GenerateProcessFault" operation="createProcessFault" partnerLink="CILCommonProcessFaultHelperIFPartner" portType="ns18:CILCommonProcessFaultHelperIF" wpc:continueOnError="inherit" wpc:displayName="Generate Process Fault" wpc:id="147">
+                  <wpc:input>
+                    <wpc:parameter name="createProcessFaultInputBO" variable="createProcessFaultInputBO"/>
+                  </wpc:input>
+                  <wpc:output>
+                    <wpc:parameter name="processFaultBO" variable="processFaultBO"/>
+                  </wpc:output>
+                </bpws:invoke>
+                <bpws:reply faultName="ns1:processFault" name="ReplyProcessFault-CommonResponseHandler1" operation="processDownStream" partnerLink="ProcessDownStreamService" portType="ns1:ProcessDownStreamService" wpc:displayName="Reply ProcessFault" wpc:id="142">
+                  <wpc:input>
+                    <wpc:parameter name="processDownStreamFault1_processFault" variable="processFaultBO"/>
+                  </wpc:input>
+                </bpws:reply>
+                <bpws:terminate name="Terminate3" wpc:displayName="Terminate3" wpc:id="143"/>
+              </bpws:sequence>
+            </bpws:catchAll>
+          </bpws:faultHandlers>
+          <bpws:sequence name="HiddenSequence3" wpc:id="1073741968">
+            <bpws:assign name="Assign" wpc:displayName="Init Assign" wpc:id="17">
+              <bpws:copy>
+                <bpws:from variable="processDownStreamInput">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[headerAdditionInfo]]></bpws:query>
+                </bpws:from>
+                <bpws:to variable="info"/>
+              </bpws:copy>
+              <bpws:copy>
+                <bpws:from variable="processDownStreamInput">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[headerAdditionInfo/comProcessId]]></bpws:query>
+                </bpws:from>
+                <bpws:to variable="cilProcessId"/>
+              </bpws:copy>
+              <bpws:copy>
+                <bpws:from variable="processDownStreamInput">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[headerAdditionInfo/requestId]]></bpws:query>
+                </bpws:from>
+                <bpws:to variable="cilRequestId"/>
+              </bpws:copy>
+              <bpws:copy>
+                <bpws:from variable="processDownStreamInput">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[processRequest/requestHeader/channelRequestId]]></bpws:query>
+                </bpws:from>
+                <bpws:to variable="channelRequestId"/>
+              </bpws:copy>
+            </bpws:assign>
+            <bpws:assign name="Assign4" wpc:displayName="Assign ProcessName" wpc:id="154">
+              <bpws:copy>
+                <bpws:from variable="processDownStreamInput">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[processRequest/requestHeader/processName]]></bpws:query>
+                </bpws:from>
+                <bpws:to variable="PROCESS_NAME"/>
+              </bpws:copy>
+              <bpws:copy>
+                <bpws:from variable="processDownStreamInput">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[processRequest/requestHeader/processName]]></bpws:query>
+                </bpws:from>
+                <bpws:to variable="info">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[processName]]></bpws:query>
+                </bpws:to>
+              </bpws:copy>
+              <bpws:copy>
+                <bpws:from variable="processDownStreamInput">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[processRequest/requestHeader/channelRequestId]]></bpws:query>
+                </bpws:from>
+                <bpws:to variable="info">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[HOI]]></bpws:query>
+                </bpws:to>
+              </bpws:copy>
+              <bpws:copy>
+                <bpws:from variable="processDownStreamInput">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[processRequest/requestHeader/internalVersion]]></bpws:query>
+                </bpws:from>
+                <bpws:to variable="info">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[internalVersion]]></bpws:query>
+                </bpws:to>
+              </bpws:copy>
+            </bpws:assign>
+            <bpws:invoke name="logprocess-starts" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="log process - starts" wpc:id="124">
+              <wpc:script>
+                <wpc:javaCode><![CDATA[
+ca.cgi.com.logging.COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance(PROCESS_NAME);
+comLogger.debug(CILConstants.EBCCS, channelRequestId, cilProcessId, cilRequestId, PROCESS_NAME + " - STARTS", processDownStreamInput, "processRequest");
+]]></wpc:javaCode>
+              </wpc:script>
+            </bpws:invoke>
+            <bpws:switch name="Choice" wpc:displayName="Retry or New" wpc:id="20">
+              <bpws:case wpc:displayName="Retry" wpc:id="21">
+                <bpws:condition expressionLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[(($processDownStreamInput/headerAdditionInfo/retryCheckPoint !="") and ($processDownStreamInput/headerAdditionInfo/anyRetryXml !=""))]]></bpws:condition>
+                <bpws:assign name="Assign1" wpc:displayName="Assign RetryXML into requestDetailString" wpc:id="22">
+                  <bpws:copy>
+                    <bpws:from variable="info">
+                      <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[anyRetryXml]]></bpws:query>
+                    </bpws:from>
+                    <bpws:to variable="requestDetailString"/>
+                  </bpws:copy>
+                </bpws:assign>
+              </bpws:case>
+              <bpws:otherwise wpc:id="23">
+                <bpws:sequence name="HiddenSequence2" wpc:id="1073741937">
+                  <bpws:assign name="AssignXQInputs" wpc:displayName="Assign XQ Inputs" wpc:id="163">
+                    <bpws:copy>
+                      <bpws:from><![CDATA[LOGIN]]></bpws:from>
+                      <bpws:to variable="configDataIn">
+                        <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[getConfigData[1]/category]]></bpws:query>
+                      </bpws:to>
+                    </bpws:copy>
+                    <bpws:copy>
+                      <bpws:from><![CDATA[MaxFlow]]></bpws:from>
+                      <bpws:to variable="configDataIn">
+                        <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[getConfigData[1]/key]]></bpws:query>
+                      </bpws:to>
+                    </bpws:copy>
+                    <bpws:copy>
+                      <bpws:from><![CDATA[PASSWORD]]></bpws:from>
+                      <bpws:to variable="configDataIn">
+                        <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[getConfigData[2]/category]]></bpws:query>
+                      </bpws:to>
+                    </bpws:copy>
+                    <bpws:copy>
+                      <bpws:from><![CDATA[MaxFlow]]></bpws:from>
+                      <bpws:to variable="configDataIn">
+                        <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[getConfigData[2]/key]]></bpws:query>
+                      </bpws:to>
+                    </bpws:copy>
+                    <bpws:copy>
+                      <bpws:from><![CDATA[DESTINATION-CODED]]></bpws:from>
+                      <bpws:to variable="configDataIn">
+                        <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[getConfigData[3]/category]]></bpws:query>
+                      </bpws:to>
+                    </bpws:copy>
+                    <bpws:copy>
+                      <bpws:from><![CDATA[MaxFlow]]></bpws:from>
+                      <bpws:to variable="configDataIn">
+                        <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[getConfigData[3]/key]]></bpws:query>
+                      </bpws:to>
+                    </bpws:copy>
+                  </bpws:assign>
+                  <bpws:invoke name="InvokeRetrieveConfigData" operation="retrieveAllConfigDataValues" partnerLink="CILConfigDataDynaCacheUtilIFPartner" portType="ns19:CILConfigDataDynaCacheUtilIF" wpc:continueOnError="inherit" wpc:displayName="Invoke Retrieve Config Data" wpc:id="164">
+                    <wpc:input>
+                      <wpc:parameter name="configDataIn" variable="configDataIn"/>
+                    </wpc:input>
+                    <wpc:output>
+                      <wpc:parameter name="configDataOut" variable="configDataOut"/>
+                    </wpc:output>
+                  </bpws:invoke>
+                  <bpws:switch name="Process" wpc:displayName="Process?" wpc:id="165">
+                    <bpws:case wpc:displayName="RetrieveVoiceProfile" wpc:id="166">
+                      <bpws:condition expressionLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[($info/processName ="RetrieveVoiceProfile")]]></bpws:condition>
+                      <bpws:sequence name="HiddenSequence7" wpc:id="1073741997">
+                        <bpws:invoke name="Snippet-InvokeXQuery" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="Invoke XQuery to Map to requestDetailString" wpc:id="122">
+                          <wpc:script>
+                            <wpc:javaCode><![CDATA[requestDetailString = Xquery.transformToString(new DataObject[]{processDownStreamInput.getDataObject("processRequest"),configDataOut}, 
+	new String[]{"ca/bell/com/integration","http://CILCommonLib"}, new String[]{"processRequest","configDataOut"}, "eBCCS/custProfileQueryRequest.xq");
+	
+]]></wpc:javaCode>
+                          </wpc:script>
+                        </bpws:invoke>
+                        <bpws:invoke name="logrequestDetailString-voiceProfile" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="log requestDetailString - voiceProfile" wpc:id="129">
+                          <wpc:script>
+                            <wpc:javaCode><![CDATA[// REQUEST
+try {
+      DataObject requestObj = ComUtil.convertStringToDataObject(requestDetailString);
+      ca.cgi.com.logging.COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance(PROCESS_NAME);
+      comLogger.info(CILConstants.EBCCS, channelRequestId, cilProcessId, cilRequestId, "Customer Profile Request", requestObj, "customerProfileQueryRequest");
+} catch (Exception e) {
+      e.printStackTrace();
+}
+]]></wpc:javaCode>
+                          </wpc:script>
+                        </bpws:invoke>
+                      </bpws:sequence>
+                    </bpws:case>
+                    <bpws:case wpc:displayName="RetrieveOrderProfile" wpc:id="167">
+                      <bpws:condition expressionLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[($info/processName ="RetrieveVoiceOrder")]]></bpws:condition>
+                      <bpws:sequence name="HiddenSequence8" wpc:id="1073741998">
+                        <bpws:invoke name="Snippet-InvokeXQuery1" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="Invoke XQuery to Map to requestDetailString" wpc:id="168">
+                          <wpc:script>
+                            <wpc:javaCode><![CDATA[requestDetailString = Xquery.transformToString(new DataObject[]{processDownStreamInput.getDataObject("processRequest"),configDataOut}, 
+	new String[]{"ca/bell/com/integration","http://CILCommonLib"}, new String[]{"processRequest","configDataOut"}, "eBCCS/orderDetailsRequest.xq");
+	
+]]></wpc:javaCode>
+                          </wpc:script>
+                        </bpws:invoke>
+                        <bpws:invoke name="logrequestDetailString-voiceProfile1" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="log requestDetailString - voiceProfile" wpc:id="175">
+                          <wpc:script>
+                            <wpc:javaCode><![CDATA[// REQUEST
+try {
+      DataObject requestObj = ComUtil.convertStringToDataObject(requestDetailString);
+      ca.cgi.com.logging.COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance(PROCESS_NAME);
+      comLogger.info(CILConstants.EBCCS, channelRequestId, cilProcessId, cilRequestId, "OrderDetail Request", requestObj, "orderDetailsRequest");
+} catch (Exception e) {
+      e.printStackTrace();
+}
+]]></wpc:javaCode>
+                          </wpc:script>
+                        </bpws:invoke>
+                      </bpws:sequence>
+                    </bpws:case>
+                  </bpws:switch>
+                </bpws:sequence>
+              </bpws:otherwise>
+            </bpws:switch>
+            <bpws:sequence name="Sequence" wpc:displayName="COMMON - Request Handler" wpc:id="49">
+              <bpws:assign name="AssigncommonRequestHandlerinput" wpc:displayName="Assign commonRequestHandler input" wpc:id="45">
+                <bpws:copy>
+                  <bpws:from variable="info"/>
+                  <bpws:to variable="cilCommonRequestHandlerInput">
+                    <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[info]]></bpws:query>
+                  </bpws:to>
+                </bpws:copy>
+                <bpws:copy>
+                  <bpws:from variable="STATUS_CHECK_FLAG"/>
+                  <bpws:to variable="cilCommonRequestHandlerInput">
+                    <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[statusCheckFlag]]></bpws:query>
+                  </bpws:to>
+                </bpws:copy>
+                <bpws:copy>
+                  <bpws:from variable="requestDetailString"/>
+                  <bpws:to variable="cilCommonRequestHandlerInput">
+                    <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[requestDetailString]]></bpws:query>
+                  </bpws:to>
+                </bpws:copy>
+              </bpws:assign>
+              <bpws:invoke name="Invoke" operation="commonRequestService" partnerLink="CILCommonRequestHandlerIFPartner" portType="ns15:CILCommonRequestHandlerIF" wpc:continueOnError="inherit" wpc:displayName="Invoke Common Request Handler" wpc:id="15">
+                <wpc:input>
+                  <wpc:parameter name="cilCommonRequestHandlerInput" variable="cilCommonRequestHandlerInput"/>
+                </wpc:input>
+                <wpc:output>
+                  <wpc:parameter name="cilCommonRequestHandlerOutput" variable="cilCommonRequestHandlerOutput"/>
+                </wpc:output>
+                <bpws:catch faultName="ns15:processFault" faultVariable="processFaultVariable_CommonRequestHandler" wpc:displayName="processFault" wpc:faultType="ns14:ProcessFaultBO" wpc:id="96" wpc:variableId="118">
+                  <bpws:sequence name="HiddenSequence4" wpc:id="1073741931">
+                    <bpws:invoke name="Snippet2" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="Log Process Fault" wpc:id="131">
+                      <wpc:script>
+                        <wpc:javaCode><![CDATA[BpelException bpelexception = getCurrentFaultAsException();
+COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance(PROCESS_NAME);
+comLogger.error(CILConstants.EBCCS, channelRequestId, cilProcessId, cilRequestId, PROCESS_NAME + " - processFaultVariable_CommonRequestHandler:", bpelexception);]]></wpc:javaCode>
+                      </wpc:script>
+                    </bpws:invoke>
+                    <bpws:reply faultName="ns1:processFault" name="ReplyProcessFault-CommonRequestHandler" operation="processDownStream" partnerLink="ProcessDownStreamService" portType="ns1:ProcessDownStreamService" wpc:displayName="Reply ProcessFault" wpc:id="108">
+                      <wpc:input>
+                        <wpc:parameter name="processDownStreamFault1_processFault" variable="processFaultVariable_CommonRequestHandler"/>
+                      </wpc:input>
+                    </bpws:reply>
+                    <bpws:terminate name="Terminate2" wpc:displayName="Terminate2" wpc:id="120"/>
+                  </bpws:sequence>
+                </bpws:catch>
+              </bpws:invoke>
+            </bpws:sequence>
+            <bpws:sequence name="Sequence2" wpc:displayName="Downstream Mediation" wpc:id="56">
+              <bpws:assign name="Assign6" wpc:displayName="Assign DownStreamMediation input" wpc:id="57">
+                <bpws:copy>
+                  <bpws:from variable="info"/>
+                  <bpws:to variable="cilCommonDSMediationInput">
+                    <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[headerAdditionalInfo]]></bpws:query>
+                  </bpws:to>
+                </bpws:copy>
+                <bpws:copy>
+                  <bpws:from variable="requestDetailString"/>
+                  <bpws:to variable="cilCommonDSMediationInput">
+                    <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[requestDetailString]]></bpws:query>
+                  </bpws:to>
+                </bpws:copy>
+                <bpws:copy>
+                  <bpws:from variable="cilCommonRequestHandlerOutput">
+                    <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[transactionType/endPoint]]></bpws:query>
+                  </bpws:from>
+                  <bpws:to variable="cilCommonDSMediationInput">
+                    <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[endPoint]]></bpws:query>
+                  </bpws:to>
+                </bpws:copy>
+              </bpws:assign>
+              <bpws:switch name="Process1" wpc:displayName="Process?" wpc:id="158">
+                <bpws:case wpc:displayName="RetrieveVoiceProfile" wpc:id="159">
+                  <bpws:condition expressionLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[($info/processName ="RetrieveVoiceProfile")]]></bpws:condition>
+                  <bpws:sequence name="HiddenSequence9" wpc:id="1073742000">
+                    <bpws:invoke name="InvokeeBCCSCustomerProfile" operation="invokeDownStream" partnerLink="RetrieveVoiceProfileMedPartner" portType="ns10:CILCommonDSMediationIF" wpc:continueOnError="inherit" wpc:displayName="Invoke eBCCS Customer Profile" wpc:id="160">
+                      <wpc:input>
+                        <wpc:parameter name="downStreamMediationInputBO" variable="cilCommonDSMediationInput"/>
+                      </wpc:input>
+                      <wpc:output>
+                        <wpc:parameter name="downStreamMediationOutput" variable="cilCommonDSMediationOutput"/>
+                      </wpc:output>
+                    </bpws:invoke>
+                    <bpws:invoke name="logresponseDetailString-voiceProfile" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="log responseDetailString-voiceProfile" wpc:id="132">
+                      <wpc:script>
+                        <wpc:javaCode><![CDATA[// RESPONSE
+try {
+      if (cilCommonDSMediationOutput.getDataObject("responseDetail") != null) {
+            ca.cgi.com.logging.COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance(PROCESS_NAME);
+            comLogger.info(CILConstants.EBCCS, channelRequestId, cilProcessId, cilRequestId, "Customer Profile Response", cilCommonDSMediationOutput.getDataObject("responseDetail"), "custProfileQueryResponse");
+      }
+} catch (Exception e) {
+      e.printStackTrace();
+}
+]]></wpc:javaCode>
+                      </wpc:script>
+                    </bpws:invoke>
+                  </bpws:sequence>
+                </bpws:case>
+                <bpws:case wpc:displayName="RetrieveVoiceOrder" wpc:id="161">
+                  <bpws:condition expressionLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[($info/processName ="RetrieveVoiceOrder")]]></bpws:condition>
+                  <bpws:sequence name="HiddenSequence10" wpc:id="1073742001">
+                    <bpws:invoke name="Invoke1" operation="invokeDownStream" partnerLink="RetrieveVoiceOrderMedPartner" portType="ns10:CILCommonDSMediationIF" wpc:continueOnError="inherit" wpc:displayName="Invoke eBCCS Order Detail" wpc:id="162">
+                      <wpc:input>
+                        <wpc:parameter name="downStreamMediationInputBO" variable="cilCommonDSMediationInput"/>
+                      </wpc:input>
+                      <wpc:output>
+                        <wpc:parameter name="downStreamMediationOutput" variable="cilCommonDSMediationOutput"/>
+                      </wpc:output>
+                    </bpws:invoke>
+                    <bpws:invoke name="logresponseDetailString-voiceOrder" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="log responseDetailString-voiceOrder" wpc:id="178">
+                      <wpc:script>
+                        <wpc:javaCode><![CDATA[// RESPONSE
+try {
+      if (cilCommonDSMediationOutput.getDataObject("responseDetail") != null) {
+            ca.cgi.com.logging.COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance(PROCESS_NAME);
+            comLogger.info(CILConstants.EBCCS, channelRequestId, cilProcessId, cilRequestId, "Customer Profile Response", cilCommonDSMediationOutput.getDataObject("responseDetail"), "orderDetailsResponse");
+      }
+} catch (Exception e) {
+      e.printStackTrace();
+}
+]]></wpc:javaCode>
+                      </wpc:script>
+                    </bpws:invoke>
+                  </bpws:sequence>
+                </bpws:case>
+              </bpws:switch>
+            </bpws:sequence>
+            <bpws:sequence name="Sequence1" wpc:displayName="COMMON - Response Handler" wpc:id="50">
+              <bpws:invoke name="Snippet" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="Assign commonResponseHandler input" wpc:id="82">
+                <wpc:script>
+                  <wpc:javaCode><![CDATA[com.ibm.websphere.bo.BOFactory boFactory = (com.ibm.websphere.bo.BOFactory) com.ibm.websphere.sca.ServiceManager.INSTANCE.locateService("com/ibm/websphere/bo/BOFactory");
+cilCommonResponseHandlerInput = boFactory.create("http://CILCommonLib", "CILCommonResponseHandlerInputBO");
+
+cilCommonResponseHandlerInput.setDataObject("info", info);
+
+
+if (null != cilCommonRequestHandlerOutput.getString("transactionType/system")) {
+	cilCommonResponseHandlerInput.setString("relatedSystem", cilCommonRequestHandlerOutput.getString("transactionType/system"));
+}
+if (null != cilCommonDSMediationOutput.getString("relatedSystemID")) {
+	cilCommonResponseHandlerInput.setString("relatedSystemID", cilCommonDSMediationOutput.getString("relatedSystemID"));
+}
+
+if (null != requestDetailString) {
+	cilCommonResponseHandlerInput.setString("requestDetailString", requestDetailString);
+}
+if (null != cilCommonDSMediationOutput.getString("responseDetailString")) {
+	cilCommonResponseHandlerInput.setString("responseDetailString", cilCommonDSMediationOutput.getString("responseDetailString"));
+}
+
+if (null != cilCommonDSMediationOutput.getDataObject("responseDetail")) {
+	cilCommonResponseHandlerInput.setDataObject("responseDetail", cilCommonDSMediationOutput.getDataObject("responseDetail"));
+}
+
+if (null != cilCommonDSMediationOutput.getString("errorRuleType")) {
+	cilCommonResponseHandlerInput.setString("errorRuleType", cilCommonDSMediationOutput.getString("errorRuleType"));
+}
+
+if (null != cilCommonRequestHandlerOutput.getString("cilLogDetailID")) {
+	cilCommonResponseHandlerInput.setString("cilLogDetailID", cilCommonRequestHandlerOutput.getString("cilLogDetailID"));
+}
+if (null != cilCommonDSMediationOutput.getDataObject("responseMessageList")) {
+	cilCommonResponseHandlerInput.setDataObject("responseMessageList", cilCommonDSMediationOutput.getDataObject("responseMessageList"));
+}
+]]></wpc:javaCode>
+                </wpc:script>
+              </bpws:invoke>
+              <bpws:invoke name="Invoke4" operation="commResponseService" partnerLink="CILCommonResponseHandlerIFPartner" portType="ns16:CILCommonResponseHandlerIF" wpc:continueOnError="inherit" wpc:displayName="Invoke Common Response Handler" wpc:id="42">
+                <wpc:input>
+                  <wpc:parameter name="cilCommonResponseHandlerInput" variable="cilCommonResponseHandlerInput"/>
+                </wpc:input>
+                <wpc:output>
+                  <wpc:parameter name="cilCommonResponseHandlerOutput" variable="cilCommonResponseHandlerOutput"/>
+                </wpc:output>
+                <bpws:catch faultName="ns16:processFault" faultVariable="processFaultVariable_CommonResponseHandler" wpc:displayName="processFault" wpc:faultType="ns14:ProcessFaultBO" wpc:id="101" wpc:variableId="119">
+                  <bpws:sequence name="HiddenSequence5" wpc:id="1073741933">
+                    <bpws:invoke name="Snippet1" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="Log Process Fault" wpc:id="133">
+                      <wpc:script>
+                        <wpc:javaCode><![CDATA[BpelException bpelexception = getCurrentFaultAsException();
+COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance(PROCESS_NAME);
+comLogger.error(CILConstants.EBCCS, channelRequestId, cilProcessId, cilRequestId, PROCESS_NAME + " - processFaultVariable_CommonResponseHandler:", bpelexception);]]></wpc:javaCode>
+                      </wpc:script>
+                    </bpws:invoke>
+                    <bpws:reply faultName="ns1:processFault" name="ReplyProcessFault-CommonResponseHandler" operation="processDownStream" partnerLink="ProcessDownStreamService" portType="ns1:ProcessDownStreamService" wpc:displayName="Reply ProcessFault" wpc:id="110">
+                      <wpc:input>
+                        <wpc:parameter name="processDownStreamFault1_processFault" variable="processFaultVariable_CommonResponseHandler"/>
+                      </wpc:input>
+                    </bpws:reply>
+                    <bpws:terminate name="Terminate1" wpc:displayName="Terminate1" wpc:id="121"/>
+                  </bpws:sequence>
+                </bpws:catch>
+              </bpws:invoke>
+            </bpws:sequence>
+            <bpws:assign name="Assign5" wpc:displayName="Assign processDownStreamResponse output" wpc:id="116">
+              <bpws:copy>
+                <bpws:from variable="cilCommonResponseHandlerOutput">
+                  <bpws:query queryLanguage="http://www.w3.org/TR/1999/REC-xpath-19991116"><![CDATA[processDownStreamResponse]]></bpws:query>
+                </bpws:from>
+                <bpws:to variable="processDownStreamOutput"/>
+              </bpws:copy>
+            </bpws:assign>
+            <bpws:empty name="EmptyAction1" wpc:displayName="Update ProcessResponse (if required) for SUCCESS action" wpc:id="117"/>
+            <bpws:invoke name="logprocess-ends" operation="null" partnerLink="null" portType="wpc:null" wpc:continueOnError="inherit" wpc:displayName="log process - ends" wpc:id="130">
+              <wpc:script>
+                <wpc:javaCode><![CDATA[ca.cgi.com.logging.COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance(PROCESS_NAME);
+comLogger.debug(CILConstants.EBCCS, channelRequestId, cilProcessId, cilRequestId, PROCESS_NAME + " - ENDS", processDownStreamOutput, "processResponse");
+]]></wpc:javaCode>
+              </wpc:script>
+            </bpws:invoke>
+          </bpws:sequence>
+        </bpws:scope>
+        <bpws:reply name="Reply_processDownStream" operation="processDownStream" partnerLink="ProcessDownStreamService" portType="ns1:ProcessDownStreamService" wpc:displayName="Reply-processDownStream" wpc:id="8">
+          <wpc:input>
+            <wpc:parameter name="processResponse" variable="processDownStreamOutput"/>
+          </wpc:input>
+        </bpws:reply>
+      </bpws:sequence>
+    </bpws:onMessage>
+    <bpws:onMessage operation="processDownStreamAsync" partnerLink="ProcessDownStreamService" portType="ns1:ProcessDownStreamService" wpc:id="9">
+      <wpc:output>
+        <wpc:parameter name="processRequest" variable="processDownStreamAsyncInput"/>
+      </wpc:output>
+      <bpws:sequence name="HiddenSequence1" wpc:id="1073741834">
+        <bpws:empty name="EmptyAction" wpc:displayName="EmptyAction" wpc:id="11"/>
+        <bpws:terminate name="Terminate" wpc:displayName="Terminate" wpc:id="16"/>
+      </bpws:sequence>
+    </bpws:onMessage>
+  </bpws:pick>
+</bpws:process>

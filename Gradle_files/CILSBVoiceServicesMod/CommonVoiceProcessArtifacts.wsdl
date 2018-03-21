@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ReceiveCreditRequestProcess" targetNamespace="http://CILSBCreditDecisionMod/ReceiveCreditRequestProcessArtifacts" xmlns:ns="http://CILCommonLib/CILCommonProcessFaultHelperIF" xmlns:ns0="http://CILCommonLib/CILConfigDataDynaCacheUtilIF" xmlns:ns3="http://CILCommonLib/CILCommonRequestHandlerIF" xmlns:ns4="http://CILCommonLib/CILCommonResponseHandlerIF" xmlns:ns5="http://CILCommonLib" xmlns:plnk="http://schemas.xmlsoap.org/ws/2004/03/partner-link/" xmlns:tns="http://CILSBCreditDecisionMod/ReceiveCreditRequestProcessArtifacts" xmlns:wsdl0="http://bell.bpm.com/esb/ComCommonLib/interface/ProcessDownStreamService/v1_0">
+  <plnk:partnerLinkType name="ProcessDownStreamServicePLT">
+    <plnk:role name="Interface">
+      <plnk:portType name="wsdl0:ProcessDownStreamService"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+  <plnk:partnerLinkType name="CILCommonRequestHandlerIFPLT">
+    <plnk:role name="Interface">
+      <plnk:portType name="ns3:CILCommonRequestHandlerIF"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+  <plnk:partnerLinkType name="CILCommonResponseHandlerIFPLT">
+    <plnk:role name="Interface">
+      <plnk:portType name="ns4:CILCommonResponseHandlerIF"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="CILCommonProcessFaultHelperIFPartnerPLT">
+    <plnk:role name="Reference">
+      <plnk:portType name="ns:CILCommonProcessFaultHelperIF"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="RetrieveVoiceProfileMedPLT">
+    <plnk:role name="Reference">
+      <plnk:portType name="ns5:CILCommonDSMediationIF"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="RetrieveVoiceOrderMedPLT">
+    <plnk:role name="Reference">
+      <plnk:portType name="ns5:CILCommonDSMediationIF"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="CILConfigDataDynaCacheUtilIFPartnerPLT">
+    <plnk:role name="Reference">
+      <plnk:portType name="ns0:CILConfigDataDynaCacheUtilIF"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+    <wsdl:import location="ProcessDownStreamService.wsdl" namespace="http://bell.bpm.com/esb/ComCommonLib/interface/ProcessDownStreamService/v1_0"/>
+    <wsdl:import location="CILCommonRequestHandlerIF.wsdl" namespace="http://CILCommonLib/CILCommonRequestHandlerIF"/>
+    <wsdl:import location="CILCommonResponseHandlerIF.wsdl" namespace="http://CILCommonLib/CILCommonResponseHandlerIF"/>
+    <wsdl:import location="CILCommonProcessFaultHelperIF.wsdl" namespace="http://CILCommonLib/CILCommonProcessFaultHelperIF"/>
+    <wsdl:import location="CILCommonDSMediationIF.wsdl" namespace="http://CILCommonLib"/>
+    <wsdl:import location="CILConfigDataDynaCacheUtilIF.wsdl" namespace="http://CILCommonLib/CILConfigDataDynaCacheUtilIF"/>
+</wsdl:definitions>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="VoiceProcessorIF" targetNamespace="http://CILSBVoiceServicesLib/VoiceProcessorIF" xmlns:bons1="http://CILComCommonLib" xmlns:tns="http://CILSBVoiceServicesLib/VoiceProcessorIF" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+    <xsd:schema targetNamespace="http://CILSBVoiceServicesLib/VoiceProcessorIF">
+      <xsd:import namespace="http://CILComCommonLib" schemaLocation="ProcessDownStreamRequestBO.xsd"/>
+      <xsd:element name="process">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="processDownStreamRequestBO" nillable="true" type="bons1:ProcessDownStreamRequestBO"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="processResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="requestDetailString" nillable="true" type="xsd:string"/>
+            <xsd:element name="instructionRhf" nillable="true" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+    <wsdl:message name="processRequestMsg">
+    <wsdl:part element="tns:process" name="processParameters"/>
+  </wsdl:message>
+    <wsdl:message name="processResponseMsg">
+    <wsdl:part element="tns:processResponse" name="processResult"/>
+  </wsdl:message>
+    <wsdl:portType name="VoiceProcessorIF">
+    <wsdl:operation name="process">
+      <wsdl:input message="tns:processRequestMsg" name="processRequest"/>
+      <wsdl:output message="tns:processResponseMsg" name="processResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

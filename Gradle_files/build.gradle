@@ -1,0 +1,398 @@
+apply from: 'properties.gradle'
+apply plugin: 'ear'
+
+task build_CIL_WatchDogMod(type: GradleBuild) {
+	dir = CIL_WatchDogMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILBatchFileMod(type: GradleBuild) {
+	dir = CILBatchFileMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILBatchValidatorMod(type: GradleBuild) {
+	dir = CILBatchValidatorMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+
+task build_CILBREEHandlerMod(type: GradleBuild) {
+	dir = CILBREEHandlerMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILCOMInterfaceMod(type: GradleBuild) {
+	dir = CILCOMInterfaceMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILCommonGatewayMod(type: GradleBuild) {
+	dir = CILCommonGatewayMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILCommonMod(type: GradleBuild) {
+	dir = CILCommonMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILDBAdaptersMed(type: GradleBuild) {
+	dir = CILDBAdaptersMed_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILDBAdaptersV2Med(type: GradleBuild) {
+	dir = CILDBAdaptersV2Med_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILNBBCHCustomerOrderMod(type: GradleBuild) {
+	dir = CILNBBCHCustomerOrderMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20171030
+task build_CILNBCommonProcessMod(type: GradleBuild) {
+	dir = CILNBCommonProcessMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILNBCOMNotificationMod(type: GradleBuild) {
+	dir = CILNBCOMNotificationMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILNBDigitekFeedbackMod(type: GradleBuild) {
+	dir = CILNBDigitekFeedbackMod_DIR
+	tasks = ['serviceDeploy']	
+}
+
+task build_CILNBOMFCustomerOrderMod(type: GradleBuild) {
+	dir = CILNBOMFCustomerOrderMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20170829
+task build_CILProcessPayment_Stub(type: GradleBuild) {
+	dir = CILProcessPayment_Stub_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20170918
+task build_CILSBProcessPaymentMod(type: GradleBuild) {
+	dir = CILSBProcessPaymentMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILRetryMed(type: GradleBuild) {
+	dir = CILRetryMed_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20171120
+task build_CILRetryV2Med(type: GradleBuild) {
+	dir = CILRetryV2Med_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBBupNotificationMod(type: GradleBuild) {
+	dir = CILSBBupNotificationMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBSuppressNM1BillingMod(type: GradleBuild) {
+	dir = CILSBSuppressNM1BillingMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBCreditDecisionMod(type: GradleBuild) {
+	dir = CILSBCreditDecisionMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBOneBillMod(type: GradleBuild) {
+	dir = CILSBOneBillMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBReserveNM1BANMod(type: GradleBuild) {
+	dir = CILSBReserveNM1BANMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBroadbandProvisioningModule(type: GradleBuild) {
+	dir = CILSBroadbandProvisioningModule_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBScheduleAppointment(type: GradleBuild) {
+	dir = CILSBScheduleAppointment_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20170921
+task build_CILSubmitFalloutMod(type: GradleBuild) {
+	dir = CILSubmitFalloutMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBSubmitShippingOrderMod(type: GradleBuild) {
+	dir = CILSBSubmitShippingOrderMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBVideoProvisioningMod(type: GradleBuild) {
+	dir = CILSBVideoProvisioningMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBVoiceProvisioningMed(type: GradleBuild) {
+	dir = CILSBVoiceProvisioningMed_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBVoiceProvisioningResponseMed(type: GradleBuild) {
+	dir = CILSBVoiceProvisioningResponseMed_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20170829
+task build_CILSubmitInstantActivation_Stub(type: GradleBuild) {
+	dir = CILSubmitInstantActivation_Stub_DIR
+	tasks = ['serviceDeploy']
+}
+
+// -20170918
+task build_CILSBSubmitInstantActivationMod(type: GradleBuild) {
+	dir = CILSBSubmitInstantActivationMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSubmitOrderUpdateNotifnMed(type: GradleBuild) {
+	dir = CILSubmitOrderUpdateNotifnMed_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20170829
+task build_StubProject(type: GradleBuild) {
+	dir = StubProject_DIR
+	tasks = ['serviceDeploy']
+}
+
+// Multiple MDB - 20180302 - Start
+task build_CILSBVoiceProvisioningMDB(type: GradleBuild) {
+	dir = CILSBVoiceProvisioningMDB_DIR
+	startParameter.projectProperties = gradle.startParameter.projectProperties + [portNumber: ""]
+	tasks = ['build']
+}
+
+task build_CILSBVoiceProvisioningMDBClient(type: GradleBuild) {
+	dir = CILSBVoiceProvisioningMDBClient_DIR
+	tasks = ['build']
+}
+
+task build_CILSBVoiceProvisioningMDBEAR(type: Ear, dependsOn: ['build_CILSBVoiceProvisioningMDB']) {
+	from DIST_DIR
+	include '*.jar'
+	baseName = 'CILSBVoiceProvisioningMDB'
+	destinationDir = file(DIST_DIR)
+}
+
+task build_CILSBVoiceProvisioningMDBEARs(dependsOn: 'build_CILSBVoiceProvisioningMDBClient') {
+	doLast {
+		(1.."${times}".toInteger()).each { number ->
+			task "build_CILSBVoiceProvisioningMDB${number}"(type: GradleBuild) {
+				dir = CILSBVoiceProvisioningMDB_DIR
+				startParameter.projectProperties = gradle.startParameter.projectProperties + [portNumber: "${number}"]
+				tasks = ['build']
+			}
+			task "build_CILSBVoiceProvisioningMDBEAR${number}"(type: Ear) {
+				from DIST_DIR
+				include '*.jar'
+				baseName = "CILSBVoiceProvisioningMDB${number}"
+				destinationDir = file(DIST_DIR)
+			}
+			tasks."build_CILSBVoiceProvisioningMDB${number}".execute()
+			tasks."build_CILSBVoiceProvisioningMDBEAR${number}".execute()
+        }
+	}
+}
+
+// Multiple MDB - 20180302 - End
+
+// Wireless - 20180308 by Ralph Wang
+task build_CILSBWirelessProvisioningMod(type: GradleBuild) {
+	dir = CILSBWirelessProvisioningMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBWorkOrderMod(type: GradleBuild) {
+	dir = CILSBWorkOrderMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20171027
+task build_CILNBOMFCustomerNotificationProcess(type: GradleBuild) {
+	dir = CILNBOMFCustomerNotificationProcess_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20171113
+task build_CILCreateRetrieveNM1Module(type: GradleBuild) {
+	dir = CILCreateRetrieveNM1Module_DIR
+	tasks = ['serviceDeploy']
+}
+
+// - 20171123
+task build_CILSBSubmitLocalServiceRequestMod(type: GradleBuild) {
+	dir = CILSBSubmitLocalServiceRequestMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILSBThrottleProcessModule(type: GradleBuild)  {
+	dir = CILSBThrottleProcessModule_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILNBRegistrationRecProcessorMod(type: GradleBuild)  {
+	dir = CILNBRegistrationRecProcessorMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILNBLSCProcessMod(type: GradleBuild)  {
+	 dir = CILNBLSCProcessMod_DIR
+	 tasks = ['serviceDeploy']
+}
+
+task build_CILNBBCHCustomerOrderDetailsMod(type: GradleBuild)  {
+	 dir = CILNBBCHCustomerOrderDetailsMod_DIR
+	 tasks = ['serviceDeploy']
+}
+
+task build_CILSBVoiceServicesMod(type: GradleBuild)  {
+	dir = CILSBVoiceServicesMod_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILNBAutoCompleteBatchModule(type: GradleBuild)  {
+	dir = CILNBAutoCompleteBatchModule_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_VoiceBPMStub(type: GradleBuild)  {
+	dir = VoiceBPMStub_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILNBBillingCustomerOrderProcess(type: GradleBuild)  {
+	dir = CILNBBillingCustomerOrderProcess_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_CILStuckOrderMed(type: GradleBuild)  {
+	dir = CILStuckOrderMed_DIR
+	tasks = ['serviceDeploy']
+}
+
+task build_common {
+	doLast {
+		tasks.build_CILDBAdaptersMed.execute()
+		tasks.build_CILDBAdaptersV2Med.execute()
+		tasks.build_CILCOMInterfaceMod.execute()
+		tasks.build_CILCommonMod.execute()
+		tasks.build_CILCommonGatewayMod.execute()
+		tasks.build_CILRetryMed.execute()
+		tasks.build_CILRetryV2Med.execute()
+		tasks.build_CIL_WatchDogMod.execute()
+		tasks.build_CILBREEHandlerMod.execute()
+		tasks.build_StubProject.execute()
+		tasks.build_CILCreateRetrieveNM1Module.execute()
+		tasks.build_CILStuckOrderMed.execute()
+	}
+}
+
+task build_northbound {
+	doLast {
+		tasks.build_CILNBOMFCustomerOrderMod.execute()
+		tasks.build_CILNBBCHCustomerOrderMod.execute()
+		tasks.build_CILNBCOMNotificationMod.execute()
+		tasks.build_CILBatchFileMod.execute()
+		tasks.build_CILBatchValidatorMod.execute()
+		tasks.build_CILNBDigitekFeedbackMod.execute()
+		tasks.build_CILNBCommonProcessMod.execute()
+		tasks.build_CILNBOMFCustomerNotificationProcess.execute()
+		tasks.build_CILNBRegistrationRecProcessorMod.execute()
+		tasks.build_CILNBLSCProcessMod.execute()
+		tasks.build_CILNBBCHCustomerOrderDetailsMod.execute()
+		tasks.build_CILNBAutoCompleteBatchModule.execute()
+		tasks.build_CILNBBillingCustomerOrderProcess.execute()
+	}
+}
+
+task build_southbound_fundamental {
+	doLast {
+		tasks.build_CILSBScheduleAppointment.execute()
+		tasks.build_CILSubmitFalloutMod.execute()
+		tasks.build_CILSBBupNotificationMod.execute()
+		tasks.build_CILSBSuppressNM1BillingMod.execute()
+		tasks.build_CILSBWorkOrderMod.execute()	
+		tasks.build_CILSBSubmitLocalServiceRequestMod.execute()
+		//tasks.build_CILSBThrottleProcessMod.execute()
+	}
+}
+
+task build_southbound_voice(dependsOn: build_southbound_fundamental) {
+	doLast {
+		tasks.build_CILSBVoiceProvisioningMed.execute()
+		tasks.build_CILSBVoiceProvisioningResponseMed.execute()
+		tasks.build_CILSubmitOrderUpdateNotifnMed.execute()
+		tasks.build_CILSBReserveNM1BANMod.execute()
+		tasks.build_CILSBVoiceProvisioningMDBEAR.execute()
+		tasks.build_CILSBVoiceServicesMod.execute()
+		tasks.build_VoiceBPMStub.execute()
+	}
+}
+
+task build_southbound_boardband(dependsOn: build_southbound_voice) {
+	doLast {
+		tasks.build_CILSBroadbandProvisioningModule.execute()
+		tasks.build_CILSBCreditDecisionMod.execute()
+	}
+}
+
+task build_southbound_video(dependsOn: build_southbound_boardband) {
+	doLast {
+		tasks.build_CILSBVideoProvisioningMod.execute()
+		tasks.build_CILProcessPayment_Stub.execute()
+		tasks.build_CILSBProcessPaymentMod.execute()
+		tasks.build_CILSubmitInstantActivation_Stub.execute()
+		tasks.build_CILSBSubmitInstantActivationMod.execute()
+		tasks.build_CILSBSubmitShippingOrderMod.execute()
+	}
+}
+
+task build_southbound_billing(dependsOn: build_southbound_video) {
+	doLast {
+		tasks.build_CILSBOneBillMod.execute()
+		tasks.build_CILSBThrottleProcessModule.execute()
+	}
+}
+
+task build_southbound {
+	doLast {
+		tasks.build_southbound_fundamental.execute()
+		tasks.build_southbound_voice.execute()
+		tasks.build_southbound_boardband.execute()
+		tasks.build_southbound_video.execute()
+		tasks.build_southbound_billing.execute()
+	}
+}
+
+task all {
+	doLast {
+		tasks.build_common.execute()
+		tasks.build_northbound.execute()
+		tasks.build_southbound.execute()
+	}
+}

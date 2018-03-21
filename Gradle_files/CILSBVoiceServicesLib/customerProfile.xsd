@@ -1,0 +1,530 @@
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by Denis Rozon (CGI INFO SYSTEMS MGMT CONS INC) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="common02.xsd"/>
+	<xs:include schemaLocation="legacyElement.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+                Change History (Change Number. YYYY/MM/DD - Name - Description)
+                     2004/08/02 - Marina Perper - Initial version: separate Customer Profile schema elements from common.xsd
+                     2004/09/16 - Marina Perper - OrderMax R3:     add maxNumberLines, Grouping
+                     2004/09/26 - Marina Perper - OrderMax R3:     add GroupIdentifier, fielded FIDs required for R3
+                     2004/10/10 - Marina Perper - OrderMax R3:     add to directoryListingDetailType: letterAlpha 
+                     2004/11/04 - Marina Perper - OrderMax R3:     add otherBillingData to Request and Response
+                     2005/06/28 - Irina Gruia       - SIMON R2:           add directoryBook to directoryListingDetailType
+					 2005/12/17-  Marina Perper  - Flanker               include common02.xsd instead of common.xsd
+					 2006/03/27 - Yubing Liu  - Pegasus fix Order Query Schema problem, moved custProfServiceAddressBCRISType to common02.xsd
+					 2007/07/25 - Asa Fok - Online Billing Manager Release 10 - added \\custProfAcctType\[[suffixCd]|[billingTelephoneNumber]] 
+					 2007/07/25 - Asa Fok - Online Billing Manager Release 10 - added \\custProfileQueryRqstItemType\billingTelephoneNumber
+			2008/03/05 - Yulia Titov - eBCCS Everest 
+				- added accountFidInfo element under custProfileQueryRqstItemType		 
+				- added custProfAccountFidList element under custProfileDtlType		 
+				- added custProfAccountFidListType
+			2008/06/24 - Christian Meunier - OrderMax Rel 22 
+				- add preferredInterEchangeCarrier to custProfileQueryRqstItemType
+          		       - add preferredInterEchangeCarrier to custProfileQueryDtlType
+			2012/11/13 - Ross Yu - IRIS Enhancements
+				- added searchOptionsType, multipleSearchesType
+			2015/01/27 - Barbara Diamond DEVO 1A - R36 - CIMS Customer Identification Number (CIN)
+				    - added CIMSCustomerIdentificationNumber to CustProfileQueryRqstItemType
+			  		- added CIMSCustomerType
+					- added CIMSCustomer (of CIMSCustomerType) to CustProfileDtlType
+    </xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="accessLineDetailType">
+		<xs:sequence>
+			<xs:element name="accessLine" type="accessLineType"/>
+			<xs:element name="pendingOrderIndr" type="yesNoCharType" minOccurs="0"/>
+			<xs:element name="refInfo" minOccurs="0"/>
+			<xs:element name="specialServicesCircuitId" minOccurs="0"/>
+			<xs:element name="lineServiceType" minOccurs="0"/>
+			<xs:element name="preferredInterExchangeCarrier" minOccurs="0"/>
+			<xs:element name="localServiceProvider" minOccurs="0"/>
+			<xs:element name="localNumberPortability" minOccurs="0"/>
+			<xs:element name="equiv" minOccurs="0"/>
+			<xs:element name="nonPublishPostIndr" minOccurs="0"/>
+			<xs:element name="directoryEntitlement" minOccurs="0"/>
+			<xs:element name="billTo" minOccurs="0"/>
+			<xs:element name="wireCentre" minOccurs="0"/>
+			<xs:element name="circuitFid" type="usocFidType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="custProfUsoc" type="installedUsocListSimpleType" minOccurs="0"/>
+			<xs:element name="groupingList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="grouping" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="groupingType">
+										<xs:sequence>
+											<xs:element name="groupIdentifier"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="totalGroups" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="accountsReceivableRqstItemListType">
+		<xs:sequence>
+			<xs:element name="collectionsInfo" minOccurs="0"/>
+			<xs:element name="totalAccountsReceivableRqstItems" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfileDtlType">
+		<xs:sequence>
+			<xs:element name="OrderListSummaryDtlBCRIS" type="orderListSummaryDtlBCRISType" minOccurs="0"/>
+			<xs:element name="custProfileIdentification" type="custProfileType"/>
+			<xs:element name="custProfAccountInfo" type="custProfAcctType" minOccurs="0"/>
+			<xs:element name="custProfAcctBillingInfo" type="custProfAcctBillingInfoType" minOccurs="0"/>
+			<xs:element name="preAuthCreditCard" type="preAuthCreditCardType" minOccurs="0"/>
+			<xs:element name="preAuthDebitInfo" type="preAuthDebitInfoType" minOccurs="0"/>
+			<xs:element name="nameDisplay" minOccurs="0"/>
+			<xs:element name="consumerCreditInfoDtl" type="consumerCreditInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="businessCreditInfoDtl" type="businessCreditInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="custProfileCreditInfo" type="custProfCreditInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="custProfAcctAddtlBillingInfo" type="custProfAddtlBillingInfoType" minOccurs="0"/>
+			<xs:element name="aggregationPlanList" type="aggregationPlanListType" minOccurs="0"/>
+			<xs:element name="subscriptionList" type="subscriptionListType" minOccurs="0"/>
+			<xs:element name="accountClusterList" type="accountClusterListType" minOccurs="0"/>
+			<xs:element name="custProfServiceAddress" type="custProfServiceAddressBCRISType" minOccurs="0"/>
+			<xs:element name="custProfAccessLineList" type="custProfAccessLineListType" minOccurs="0"/>
+			<xs:element name="custProfAccessLineDtlList" type="custProfAccessLineDtlListType" minOccurs="0"/>
+			<xs:element name="custProfProductList" type="productListType" minOccurs="0"/>
+			<xs:element name="custProfDirectoryListingList" type="custProfDirectoryListingListType" minOccurs="0"/>
+			<xs:element name="custProfCallingCardList" type="custProfCallingCardListType" minOccurs="0"/>
+			<xs:element name="custProfOtherBillingDataList" type="custProfOtherBillingDataListType" minOccurs="0"/>
+			<xs:element name="custProfAccountFidList" type="custProfAccountFidListType" minOccurs="0"/>
+			<xs:element name="preferredInterExchangeCarrier" type="preferredInterExchangeCarrierType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PIC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CIMSCustomer" type="CIMSCustomerType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="preferredInterExchangeCarrierType">
+		<xs:sequence>
+			<xs:element name="migrationStatus" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>account level PIC migration status held on BCHCP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfAcctType">
+		<xs:sequence>
+			<xs:element name="CIMSCustAccountNumber"/>
+			<xs:element name="MCOBSCustCd"/>
+			<xs:element name="oneBillAcctNbr"/>
+			<xs:element name="contactLanguage"/>
+			<xs:element name="busResIndr"/>
+			<xs:element name="custCd"/>
+			<xs:element name="suffixCd" minOccurs="0"/>
+			<xs:element name="billingTelephoneNumber" type="telephoneNumberType" minOccurs="0"/>
+			<xs:element name="custTypeCd"/>
+			<xs:element name="classOfService"/>
+			<xs:element name="creditClass"/>
+			<xs:element name="foreignDirectoryIndr"/>
+			<xs:element name="universalClassOfBusCd"/>
+			<xs:element name="cutoverDate"/>
+			<xs:element name="passWord" minOccurs="0"/>
+			<xs:element name="optOutIndr" type="yesNoType" minOccurs="0"/>
+			<!-- 20070725 OBMR10 Asa Fok @S@-->
+			<!-- 20070725 OBMR10 Asa Fok @S@ -->
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfAcctBillingInfoType">
+		<xs:sequence>
+			<xs:element name="acctAggregationIndr" type="yesNoType"/>
+			<xs:element name="customRptsIndr" type="yesNoType"/>
+			<xs:element name="taxCd"/>
+			<xs:element name="taxExemptionNbr"/>
+			<xs:element name="directoryAsstExemptIndr" type="yesNoType"/>
+			<xs:element name="fictitiousTNCompNPA"/>
+			<xs:element name="fictitiousTN"/>
+			<xs:element name="billType"/>
+			<xs:element name="taxAssessRegionCd"/>
+			<xs:element name="specialNeedsCd"/>
+			<xs:element name="defaultBillPeriod"/>
+			<xs:element name="custSelectBillPeriod"/>
+			<xs:element name="automaticMailCollectionCd"/>
+			<xs:element name="taxRegistrationNbr"/>
+			<xs:element name="specialBillIndr" type="yesNoType"/>
+			<xs:element name="socialInsNbr"/>
+			<xs:element name="bill2000Indr" type="yesNoType"/>
+			<xs:element name="ediIndr" type="yesNoType"/>
+			<xs:element name="magTapeBillERIndr" type="yesNoType"/>
+			<xs:element name="magTapeBillOCCIndr" type="yesNoType"/>
+			<xs:element name="mirrorImageBillIndr" type="yesNoType"/>
+			<xs:element name="magTapeBillTollIndr" type="yesNoType"/>
+			<xs:element name="summaryAcctBillIndr" type="yesNoType"/>
+			<xs:element name="taxReportIndr" type="yesNoType"/>
+			<xs:element name="tollSeparateBillIndr" type="yesNoType"/>
+			<xs:element name="preAuthCreditCardIndr" type="yesNoType"/>
+			<xs:element name="preAuthDebitIndr" type="yesNoType"/>
+			<xs:element name="returnEnvelopeIndr" type="yesNoUnknownType"/>
+			<xs:element name="invoiceLanguage"/>
+			<xs:element name="invoiceFormatCd"/>
+			<xs:element name="numberOfCopies"/>
+			<xs:element name="longDistanceDisplayType"/>
+			<xs:element name="pageBreak" type="yesNoType"/>
+			<xs:element name="driverLicense"/>
+			<xs:element name="customerServiceCentreCd"/>
+			<xs:element name="billNameAddress" type="billNameAddressUnfieldedType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfAddtlBillingInfoType">
+		<xs:sequence>
+			<xs:element name="pullBillCd"/>
+			<xs:element name="specialHandlingCd"/>
+			<xs:element name="cimsIndr"/>
+			<xs:element name="accountCategory"/>
+			<xs:element name="cimsAccountStatus"/>
+			<xs:element name="typeOfAccountCd"/>
+			<xs:element name="salesSupportGroupCd"/>
+			<xs:element name="stateCd"/>
+			<xs:element name="billingCompanyCd"/>
+			<xs:element name="accountEstablishDate"/>
+			<xs:element name="latePaymentExemptCd"/>
+			<xs:element name="latePaymentExemptEndDate"/>
+			<xs:element name="giftAccount1Indr" type="yesNoType"/>
+			<xs:element name="giftAccount2Indr" type="yesNoType"/>
+			<xs:element name="wattsAccountIndr" type="yesNoType"/>
+			<xs:element name="tollAccountIndr" type="yesNoType"/>
+			<xs:element name="mediaTypeCd" type="xs:string"/>
+			<xs:element name="additionalReportsIndr" type="yesNoType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfileType">
+		<xs:sequence>
+			<xs:element name="primaryAccountTN"/>
+			<xs:element name="busOfcIdCd"/>
+			<xs:element name="region"/>
+			<xs:element name="rateGroup"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="consumerCreditInfoType">
+		<xs:sequence>
+			<xs:element name="previousTN" type="xs:string"/>
+			<xs:element name="contactInfo" type="xs:string"/>
+			<xs:element name="employer" type="xs:string"/>
+			<xs:element name="occupation" type="xs:string"/>
+			<xs:element name="hireDate" type="xs:string"/>
+			<xs:element name="prevCreditClass" type="xs:string"/>
+			<xs:element name="referenceName" type="xs:string"/>
+			<xs:element name="referenceContactInfo" type="xs:string"/>
+			<xs:element name="referenceRelationship" type="xs:string"/>
+			<xs:element name="coUserName" type="xs:string"/>
+			<xs:element name="coUserContactInfo" type="xs:string"/>
+			<xs:element name="coUserEmployer" type="xs:string"/>
+			<xs:element name="coUserOccupation" type="xs:string"/>
+			<xs:element name="coUserHireDate" type="xs:string"/>
+			<xs:element name="firstName" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="businessCreditInfoType">
+		<xs:sequence>
+			<xs:element name="businessType" type="xs:string"/>
+			<xs:element name="busEstablishDate" type="xs:string"/>
+			<xs:element name="organizationKey" type="xs:string"/>
+			<xs:element name="bankName" type="xs:string"/>
+			<xs:element name="bankBranch" type="xs:string"/>
+			<xs:element name="bankAccountNbr" type="xs:string"/>
+			<xs:element name="otherService" type="xs:string"/>
+			<xs:element name="otherServiceCredClass" type="xs:string"/>
+			<xs:element name="otherServiceEstDate"/>
+			<xs:element name="firstOfficer" type="xs:string"/>
+			<xs:element name="firstOfficerTn" type="xs:string"/>
+			<xs:element name="firstOfficerCredClass" type="xs:string"/>
+			<xs:element name="firstOfficerPrevEmployer" type="xs:string"/>
+			<xs:element name="secondOfficer" type="xs:string"/>
+			<xs:element name="secondOfficerTN" type="xs:string"/>
+			<xs:element name="secondOfficerCredClass" type="xs:string"/>
+			<xs:element name="secondOfficerPrevEmployer" type="xs:string"/>
+			<xs:element name="contactInfo" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfCreditInfoType">
+		<xs:sequence>
+			<xs:element name="creditClassDate"/>
+			<xs:element name="creditReviewDate"/>
+			<xs:element name="serviceDate"/>
+			<xs:element name="disconnectDate"/>
+			<xs:element name="alternateDepositDate" type="xs:string"/>
+			<xs:element name="alternateDepositAmt" type="xs:string"/>
+			<xs:element name="depositAmt" type="xs:string"/>
+			<xs:element name="depositDate" type="xs:string"/>
+			<xs:element name="listIndr" type="xs:string"/>
+			<xs:element name="creditRemarksLine1" type="xs:string"/>
+			<xs:element name="creditRemarksLine2" type="xs:string"/>
+			<xs:element name="creditRemarksLine3" type="xs:string"/>
+			<xs:element name="creditRemarksLine4" type="xs:string"/>
+			<xs:element name="creditRemarksLine5" type="xs:string"/>
+			<xs:element name="disconnectRemarksLine1" type="xs:string"/>
+			<xs:element name="disconnectRemarksLine2" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfileQueryRqstItemType">
+		<xs:all>
+			<xs:element name="accountInfo" minOccurs="0"/>
+			<xs:element name="accountBillingInfo" minOccurs="0"/>
+			<xs:element name="additionalBillingInfo" minOccurs="0"/>
+			<xs:element name="preAuthorizedCreditCard" minOccurs="0"/>
+			<xs:element name="preAuthorizedDebit" minOccurs="0"/>
+			<xs:element name="creditHistory" minOccurs="0"/>
+			<xs:element name="aggregationPlan" minOccurs="0"/>
+			<xs:element name="orderListSummaryBCRIS" minOccurs="0"/>
+			<xs:element name="accountClusterInfo" minOccurs="0"/>
+			<xs:element name="subscriptionInfo" minOccurs="0"/>
+			<xs:element name="serviceAddress" minOccurs="0"/>
+			<xs:element name="accessLineList" minOccurs="0"/>
+			<xs:element name="accountBasicInfo" minOccurs="0"/>
+			<xs:element name="accessLineInfo" type="accessLineInfoType" minOccurs="0"/>
+			<xs:element name="directoryListingInfo" minOccurs="0"/>
+			<xs:element name="callingCardInfo" minOccurs="0"/>
+			<xs:element name="otherBillingData" minOccurs="0"/>
+			<xs:element name="nameDisplay" minOccurs="0"/>
+			<xs:element name="orderMaxQualification" minOccurs="0"/>
+			<xs:element name="billingTelephoneNumberDtl" minOccurs="0"/>
+			<xs:element name="accountFidInfo" minOccurs="0"/>
+			<xs:element name="preferredInterExchangeCarrier" minOccurs="0"/>
+			<!-- 20070725 OBMR10 Asa Fok @S@-->
+			<!-- 20070725 OBMR10 Asa Fok @S@-->
+			<xs:element name="CIMSCustomerIdentificationNumber" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="preAuthCreditCardType">
+		<xs:sequence>
+			<xs:element name="processingStatusCd" type="xs:string"/>
+			<xs:element name="number" type="xs:string"/>
+			<xs:element name="holderName" type="xs:string"/>
+			<xs:element name="requestorName" type="xs:string"/>
+			<xs:element name="expiryDate" type="xs:string"/>
+			<xs:element name="debitInterval" type="xs:string"/>
+			<xs:element name="cardType" type="cardTypeType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="preAuthDebitInfoType">
+		<xs:sequence>
+			<xs:element name="processingStatusCd" type="xs:string"/>
+			<xs:element name="bankAccountName1" type="xs:string"/>
+			<xs:element name="bankAccountName2" type="xs:string"/>
+			<xs:element name="bankCode" type="xs:string"/>
+			<xs:element name="bankTransitNumber" type="xs:string"/>
+			<xs:element name="bankAccountNumber" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="customerProfileQueryRqstItemType">
+		<xs:sequence>
+			<xs:element name="custProfileQueryRqstItem" type="custProfileQueryRqstItemType"/>
+			<xs:element name="totalCustProfileQueryRqstItems" type="xs:positiveInteger"/>
+			<xs:element name="productAndServicesView" type="BellCanadaProductViewType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="accessLineInfoType">
+		<xs:sequence>
+			<xs:element name="PtnInfo" minOccurs="0"/>
+			<xs:element name="accessLineInfoList" type="custProfAccessLineListType" minOccurs="0"/>
+			<xs:element name="maxNumberLines" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfAccessLineListType">
+		<xs:sequence>
+			<xs:element name="accessLine" type="accessLineType" maxOccurs="unbounded"/>
+			<xs:element name="totalAccessLines" type="xs:positiveInteger"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfAccessLineDtlListType">
+		<xs:sequence>
+			<xs:element name="accessLineDetail" type="accessLineDetailType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="totalAccessLines" type="xs:positiveInteger"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BCH_affililateQueryResponseType">
+		<xs:sequence>
+			<xs:element name="companyName" type="companyNameType"/>
+			<xs:element name="companyCode" type="companyCodeType"/>
+			<xs:element name="affiliateAccountDetail" type="affiliateAccountDetailType" minOccurs="0"/>
+			<xs:element name="affiliateProductList" type="productListType" minOccurs="0"/>
+			<xs:element name="affiliateSegmentList" type="segmentListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="segmentListType">
+		<xs:sequence>
+			<xs:element name="segmentDetails" type="segmentDetailsType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="segmentDetailsType">
+		<xs:sequence>
+			<xs:element name="accountId"/>
+			<xs:element name="segmentName"/>
+			<xs:element name="segmentValue"/>
+			<xs:element name="segmentDescEnglish"/>
+			<xs:element name="segmentDescFrench"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="affiliateProfileRequestType">
+		<xs:sequence>
+			<xs:element name="affiliateName" type="companyNameType"/>
+			<xs:element name="accountDetailView" type="affiliateDataViewType"/>
+			<xs:element name="productDetailView" type="affiliateDataViewType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="BellCanadaProductViewType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="dataMartView"/>
+			<xs:enumeration value="eBCCSProductHubView"/>
+			<xs:enumeration value="legacyProductAndServicesView"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="custProfProductType">
+		<xs:sequence>
+			<xs:element name="installedQuantity" type="xs:integer"/>
+			<xs:element name="pendingOrderIndr" type="yesNoCharType" minOccurs="0"/>
+			<xs:element name="name" type="naturalLanguageNameType"/>
+			<xs:element name="id"/>
+			<xs:element name="type" type="productTypeType"/>
+			<xs:element name="legacyInstanceIdList" type="legacyInstanceIdListType" minOccurs="0"/>
+			<xs:element name="attributeList" type="productAttributeListType" minOccurs="0"/>
+			<xs:element name="productList" type="productListType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="productListType">
+		<xs:sequence>
+			<xs:element name="product" type="custProfProductType" maxOccurs="unbounded"/>
+			<xs:element name="totalProducts" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="directoryListingDetailType">
+		<xs:sequence>
+			<xs:element name="custTypeCd"/>
+			<xs:element name="nonPublishIndr" minOccurs="0"/>
+			<xs:element name="letterAlpha" minOccurs="0"/>
+			<xs:element name="directoryListingAddress" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="houseNumber" minOccurs="0"/>
+						<xs:element name="street"/>
+						<xs:element name="locationTypeCode" minOccurs="0"/>
+						<xs:element name="locationValue" minOccurs="0"/>
+						<xs:element name="postalCode"/>
+						<xs:element name="community" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="printLocationAddressIndr" minOccurs="0"/>
+			<xs:element name="directoryListingSerialNumber"/>
+			<xs:element name="directoryListingCodeDetail" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="directoryListingCode"/>
+						<xs:element name="directoryListingText"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="straightLineListing" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="firstName" minOccurs="0"/>
+						<xs:element name="initial" minOccurs="0"/>
+						<xs:element name="lastName"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="directoryBook" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="directoryBookName"/>
+						<xs:element name="directoryBookSection"/>
+						<xs:element name="directoryCloseDate" minOccurs="0"/>
+						<xs:element name="directoryDelivAddrIndr" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfDirectoryListingListType">
+		<xs:sequence>
+			<xs:element name="directoryListingDetail" type="directoryListingDetailType" maxOccurs="unbounded"/>
+			<xs:element name="totalDirectoryListing" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfCallingCardListType">
+		<xs:sequence>
+			<xs:element name="callingCardDetail" type="callingCardDetailType" maxOccurs="unbounded"/>
+			<xs:element name="totalCallingCard" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="callingCardDetailType">
+		<xs:sequence>
+			<xs:element name="callCardSerialNumber"/>
+			<xs:element name="callCardRefNumber"/>
+			<xs:element name="callCardFIDName"/>
+			<xs:element name="callCardFidText" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfOtherBillingDataListType">
+		<xs:sequence>
+			<xs:element name="otherBillingDataDetail" type="otherBillingDataDetailType" maxOccurs="unbounded"/>
+			<xs:element name="totalOtherBillingData" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="otherBillingDataDetailType">
+		<xs:sequence>
+			<xs:element name="serialNumber"/>
+			<xs:element name="refNumber" minOccurs="0"/>
+			<xs:element name="fidName"/>
+			<xs:element name="fidText" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custProfAccountFidListType">
+		<xs:sequence>
+			<xs:element name="accountFidDetail" type="usocFidType" maxOccurs="unbounded"/>
+			<xs:element name="totalAccountFid" type="xs:positiveInteger"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="searchOptionsType">
+		<xs:sequence>
+			<xs:element name="multipleSearches" type="multipleSearchesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Can be use in conjunction with TN as the identifier.  Multiple Search will suppress any BCRIS Errors and continue to return the BCHCP response from other seaches</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="multipleSearchesType">
+		<xs:sequence>
+			<xs:element name="searchByTN">
+				<xs:annotation>
+					<xs:documentation>Search By WirelineTN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="searchByMobilityMIN" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Search By MobilityMIN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="searchByExpressVuHTN" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Search By ExpressVu HTN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CIMSCustomerType">
+		<xs:sequence>
+			<xs:element name="CIMSIndicator" type="yesNoType"/>
+			<xs:element name="CIMSCustomerIdentificationNumber" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="10"/>
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by cgi (cgi) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+                Change History (Change Number. YYYY/MM/DD - Name - Description)
+                2002/06 -  Meera Krishnan - Initial Version
+                2002/09/28 - Brenda Yemensky-Doren - added responseSystem to ResponseHeaderType
+                @author Meera Krishnan [CGI]
+                @version 1.10, 2002/09/28
+               </xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="common02.xsd"/>
+	<!-- include commmon constructs-->
+	<!--xs:include schemaLocation="common.xsd"/-->
+	<!-- definition of simple types -->
+	<xs:simpleType name="ruleTypeType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="NKCSRV"/>
+			<xs:enumeration value="NKINCM"/>
+			<xs:enumeration value="NKMAND"/>
+			<xs:enumeration value="NKMAX"/>
+			<xs:enumeration value="NKONLY"/>
+			<xs:enumeration value="NKPIC"/>
+			<xs:enumeration value="NKTYPE"/>
+			<xs:enumeration value="NKUMAX"/>
+			<xs:enumeration value="NKQTY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="severityCdType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="E"/>
+			<xs:enumeration value="I"/>
+			<xs:enumeration value="W"/>
+			<xs:enumeration value="C"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="severityType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="error"/>
+			<xs:enumeration value="information"/>
+			<xs:enumeration value="warning"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- definition of complex types -->
+	<xs:complexType name="messageItemType">
+		<xs:all>
+			<xs:element name="messageCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="ruleType" type="ruleTypeType" minOccurs="0"/>
+			<xs:element name="severity" type="severityType" minOccurs="0"/>
+			<xs:element name="severityCd" type="severityCdType" minOccurs="0"/>
+			<xs:element name="substitutionList" type="substitutionListType" minOccurs="0"/>
+			<xs:element name="messageTextEnglish" type="xs:string"/>
+			<xs:element name="messageTextFrench" type="xs:string"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="responseHeaderType">
+		<xs:sequence>
+			<xs:element name="requestHeader" type="requestHeaderType"/>
+			<xs:element name="receivedDateTime" type="xs:dateTime"/>
+			<xs:element name="requestId" type="xs:string"/>
+			<xs:element name="processedDateTime" type="xs:dateTime"/>
+			<xs:element name="successIndr" type="yesNoType"/>
+			<xs:element name="responseSystem" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="responseMessageListType">
+		<xs:sequence>
+			<xs:element name="messageItem" type="messageItemType" maxOccurs="unbounded"/>
+			<xs:element name="totalMessages" type="xs:positiveInteger"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="substitutionListType">
+		<xs:sequence>
+			<xs:element name="substitutionValue" type="xs:string" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

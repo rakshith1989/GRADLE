@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by Ross (CGI INFO SYSTEMS MGMT CONS INC) -->
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by Monique Garlick (Bell) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+                Change History (Change Number. YYYY/MM/DD - Name - Description)
+                2004/09/25 - Initial Version
+                2009/11/16 - Terrence Szeto BRS R9
+					- removed acsfu schema dependancy
+                2011/06/10 - Ross Yu BRS R18
+					- Added orderDetailsAdditionalRequestItems, orderDetailsAdditionalRequestItemsType
+               </xs:documentation>
+	</xs:annotation>
+	<!-- include commmon constructs-->
+	<!--xs:include schemaLocation="acsfu.xsd"/-->
+	<xs:include schemaLocation="common02.xsd"/>
+	<!-- definition of complex types -->
+	<xs:complexType name="orderDetailsRequestType">
+		<xs:sequence>
+			<xs:element name="requestHeader" type="requestHeaderType"/>
+			<xs:element name="orderRefNumber">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="orderRefNumberBCRISType">
+							<xs:sequence>
+								<xs:element name="region">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="OR"/>
+											<xs:enumeration value="QR"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="orderDetailsAdditionalRequestItems" type="orderDetailsAdditionalRequestItemsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains additional request items</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orderDetailsAdditionalRequestItemsType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="winbackIndr" type="xs:string" minOccurs="0"/>
+			<xs:element name="controlInfo" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="orderDetailsRequest" type="orderDetailsRequestType"/>
+</xs:schema>

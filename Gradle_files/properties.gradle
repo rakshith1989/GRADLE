@@ -1,0 +1,1078 @@
+ext {
+	servicedeploy_classpath = files(WAS_HOME + 'plugins/com.ibm.soacore.runtime.jar')
+
+	//Directory properties
+	DIST_DIR = PROJECT_HOME + 'dist/'
+	CODE_DIR = PROJECT_HOME + 'code/'
+	TEMP_DIR = PROJECT_HOME + 'temp/'
+
+	//COMSchemaLib - 20171113
+	COMSchemaLib_NAME = 'COMSchemaLib'
+	COMSchemaLib_DIR = CODE_DIR + COMSchemaLib_NAME + '/'
+
+	//CILCommonLib - 20171113
+	CILCommonLib_NAME = 'CILCommonLib'
+	CILCommonLib_DIR = CODE_DIR + CILCommonLib_NAME + '/'
+
+	//OMFSchemaLib - 20171113
+	OMFSchemaLib_NAME = 'OMFSchemaLib'
+	OMFSchemaLib_DIR = CODE_DIR + OMFSchemaLib_NAME + '/'
+
+	//BCHSchemaLib - 20171113
+	BCHSchemaLib_NAME = 'BCHSchemaLib'
+	BCHSchemaLib_DIR = CODE_DIR + BCHSchemaLib_NAME + '/'
+
+	//CILSchemaLib_NAME - 20171113
+	CILSchemaLib_NAME = 'CILSchemaLib'
+	CILSchemaLib_DIR = CODE_DIR + CILSchemaLib_NAME + '/'
+
+	//CIL_WatchDogUtility
+	CIL_WatchDogUtility_NAME = 'CIL_WatchDogUtility'
+	CIL_WatchDogUtility_DIR = CODE_DIR + CIL_WatchDogUtility_NAME + '/'
+	
+	CWYEM_EMail_NAME = 'CWYEM_EMail'
+	CWYEM_EMail_DIR = CODE_DIR + CWYEM_EMail_NAME + '/'
+	
+	//CILStuckOrderLib - 20180220
+	CILStuckOrderLib_NAME = 'CILStuckOrderLib'
+	CILStuckOrderLib_DIR = CODE_DIR + CILStuckOrderLib_NAME + '/'
+
+	//CILApplicationUtil
+	CILApplicationUtil_NAME = 'CILApplicationUtil'
+	CILApplicationUtil_DIR = CODE_DIR + CILApplicationUtil_NAME + '/'
+
+	//CILBatchProcessorLib
+	CILBatchProcessorLib_NAME = 'CILBatchProcessorLib'
+	CILBatchProcessorLib_DIR = CODE_DIR + CILBatchProcessorLib_NAME + '/'
+
+	//CILBREEHandlerLib - 20170828
+	CILBREEHandlerLib_NAME = 'CILBREEHandlerLib'
+	CILBREEHandlerLib_DIR = CODE_DIR + CILBREEHandlerLib_NAME + '/'
+
+	//CILCommonLib
+	CILCommonLib_NAME = 'CILCommonLib'
+	CILCommonLib_DIR = CODE_DIR + CILCommonLib_NAME + '/'
+
+	//CILDBAdaptersLib
+	CILDBAdaptersLib_NAME = 'CILDBAdaptersLib'
+	CILDBAdaptersLib_DIR = CODE_DIR + CILDBAdaptersLib_NAME + '/'
+
+	//CILDBAdaptersV2Lib
+	CILDBAdaptersV2Lib_NAME = 'CILDBAdaptersV2Lib'
+	CILDBAdaptersV2Lib_DIR = CODE_DIR + CILDBAdaptersV2Lib_NAME + '/'
+
+	//CILNBBCHCustomerOrderLib
+	CILNBBCHCustomerOrderLib_NAME = 'CILNBBCHCustomerOrderLib'
+	CILNBBCHCustomerOrderLib_DIR = CODE_DIR + CILNBBCHCustomerOrderLib_NAME + '/'
+
+	//CILNBCOMNotificationLib
+	CILNBCOMNotificationLib_NAME = 'CILNBCOMNotificationLib'
+	CILNBCOMNotificationLib_DIR = CODE_DIR + CILNBCOMNotificationLib_NAME + '/'
+
+	//CILNBDigitekFeedbackLib
+	CILNBDigitekFeedbackLib_NAME = 'CILNBDigitekFeedbackLib'
+	CILNBDigitekFeedbackLib_DIR = CODE_DIR + CILNBDigitekFeedbackLib_NAME + '/'
+	
+	//CILNBOMFCustomerOrderLib
+	CILNBOMFCustomerOrderLib_NAME = 'CILNBOMFCustomerOrderLib'
+	CILNBOMFCustomerOrderLib_DIR = CODE_DIR + CILNBOMFCustomerOrderLib_NAME + '/'
+
+	//CILNBOMFCustomerNotificationProcessLib
+	CILNBOMFCustomerNotificationProcessLib_NAME = 'CILNBOMFCustomerNotificationProcessLib'
+	CILNBOMFCustomerNotificationProcessLib_DIR = CODE_DIR + CILNBOMFCustomerNotificationProcessLib_NAME + '/'
+
+	//CILProcessPaymentLib
+	CILProcessPaymentLib_NAME = 'CILProcessPaymentLib'
+	CILProcessPaymentLib_DIR = CODE_DIR + CILProcessPaymentLib_NAME + '/'
+
+	//CILRetryLib
+	CILRetryLib_NAME = 'CILRetryLib'
+	CILRetryLib_DIR = CODE_DIR + CILRetryLib_NAME + '/'
+
+	//CILSBBupNotificationLib
+	CILSBBupNotificationLib_NAME = 'CILSBBupNotificationLib'
+	CILSBBupNotificationLib_DIR = CODE_DIR + CILSBBupNotificationLib_NAME + '/'
+
+	//CILSBCreditDecisionLib
+	CILSBCreditDecisionLib_NAME = 'CILSBCreditDecisionLib'
+	CILSBCreditDecisionLib_DIR = CODE_DIR + CILSBCreditDecisionLib_NAME + '/'
+
+	//CILSBOneBillLib
+	CILSBOneBillLib_NAME = 'CILSBOneBillLib'
+	CILSBOneBillLib_DIR = CODE_DIR + CILSBOneBillLib_NAME + '/'
+
+	//CILSBReserveNM1BANLib
+	CILSBReserveNM1BANLib_NAME = 'CILSBReserveNM1BANLib'
+	CILSBReserveNM1BANLib_DIR = CODE_DIR + CILSBReserveNM1BANLib_NAME + '/'
+
+	//CILSBroadbandProvLib
+	CILSBroadbandProvLib_NAME = 'CILSBroadbandProvLib'
+	CILSBroadbandProvLib_DIR = CODE_DIR + CILSBroadbandProvLib_NAME + '/'
+
+	//CILSBScheduleAppointmentLib
+	CILSBScheduleAppointmentLib_NAME = 'CILSBScheduleAppointmentLib'
+	CILSBScheduleAppointmentLib_DIR = CODE_DIR + CILSBScheduleAppointmentLib_NAME + '/'
+
+	//CILSubmitFalloutLib - 20170921
+	CILSubmitFalloutLib_NAME = 'CILSubmitFalloutLib'
+	CILSubmitFalloutLib_DIR = CODE_DIR + CILSubmitFalloutLib_NAME + '/'
+
+	//CILSBSubmitShippingOrderLib
+	CILSBSubmitShippingOrderLib_NAME = 'CILSBSubmitShippingOrderLib'
+	CILSBSubmitShippingOrderLib_DIR = CODE_DIR + CILSBSubmitShippingOrderLib_NAME + '/'
+
+	//CILSBVideoProvisioningLib
+	CILSBVideoProvisioningLib_NAME = 'CILSBVideoProvisioningLib'
+	CILSBVideoProvisioningLib_DIR = CODE_DIR + CILSBVideoProvisioningLib_NAME + '/'
+
+	//CILSBVoiceProvisioningLib
+	CILSBVoiceProvisioningLib_NAME = 'CILSBVoiceProvisioningLib'
+	CILSBVoiceProvisioningLib_DIR = CODE_DIR + CILSBVoiceProvisioningLib_NAME + '/'
+
+	//CILSBVoiceProvisioningResponseLib
+	CILSBVoiceProvisioningResponseLib_NAME = 'CILSBVoiceProvisioningResponseLib'
+	CILSBVoiceProvisioningResponseLib_DIR = CODE_DIR + CILSBVoiceProvisioningResponseLib_NAME + '/'	
+
+	//CILSubmitInstantActivationLib
+	CILSubmitInstantActivationLib_NAME = 'CILSubmitInstantActivationLib'
+	CILSubmitInstantActivationLib_DIR = CODE_DIR + CILSubmitInstantActivationLib_NAME + '/'
+
+	//CILSubmitOrderUpdateNotifnLib
+	CILSubmitOrderUpdateNotifnLib_NAME = 'CILSubmitOrderUpdateNotifnLib'
+	CILSubmitOrderUpdateNotifnLib_DIR = CODE_DIR + CILSubmitOrderUpdateNotifnLib_NAME + '/'
+
+	//CILVoiceOrderDownStreamLib
+	CILVoiceOrderDownStreamLib_NAME = 'CILVoiceOrderDownStreamLib'
+	CILVoiceOrderDownStreamLib_DIR = CODE_DIR + CILVoiceOrderDownStreamLib_NAME + '/'
+
+	//CILSBWorkOrderLib - 20171012
+	CILSBWorkOrderLib_NAME = 'CILSBWorkOrderLib'
+	CILSBWorkOrderLib_DIR = CODE_DIR + CILSBWorkOrderLib_NAME + '/'
+
+	//CWYBC_JDBC
+	CWYBC_JDBC_NAME = 'CWYBC_JDBC'
+	CWYBC_JDBC_DIR = CODE_DIR + CWYBC_JDBC_NAME + '/'
+
+	//CWYFF_FlatFile2
+	CWYFF_FlatFile2_NAME = 'CWYFF_FlatFile2'
+	CWYFF_FlatFile2_DIR = CODE_DIR + CWYFF_FlatFile2_NAME + '/'
+
+	//StubProjectUtil
+	StubProjectUtil_NAME = 'StubProjectUtil'
+	StubProjectUtil_DIR = CODE_DIR + StubProjectUtil_NAME + '/'
+
+	//websphere_default_messaging_provider
+	WEBSPHERE_DEFAULT_MESSAGING_PROVIDER_NAME = 'websphere_default_messaging_provider'
+	WEBSPHERE_DEFAULT_MESSAGING_PROVIDER_DIR = CODE_DIR + WEBSPHERE_DEFAULT_MESSAGING_PROVIDER_NAME + '/'
+
+	//CILCreateRetrieveNM1Lib - 20171114
+	CILCreateRetrieveNM1Lib_NAME = 'CILCreateRetrieveNM1Lib'
+	CILCreateRetrieveNM1Lib_DIR = CODE_DIR + CILCreateRetrieveNM1Lib_NAME + '/'
+
+	//CILSBSubmitLocalServiceRequestLib - 20171123
+	CILSBSubmitLocalServiceRequestLib_NAME = 'CILSBSubmitLocalServiceRequestLib'
+	CILSBSubmitLocalServiceRequestLib_DIR = CODE_DIR + CILSBSubmitLocalServiceRequestLib_NAME + '/'
+
+	//Related to Registrationmod
+	
+	CILROMLib_NAME = 'CILROMLib'
+	CILROMLib_DIR = CODE_DIR + CILROMLib_NAME + '/'
+	
+	//CWYFF_FlatFile2_NAME = 'CWYFF_FlatFile2'
+	//CWYFF_FlatFile2_DIR = CODE_DIR + CWYFF_FlatFile2_DIR + '/'
+	
+	CILNBRegistrationLib_NAME = 'CILNBRegistrationLib'
+	CILNBRegistrationLib_DIR = CODE_DIR + CILNBRegistrationLib_NAME + '/'	
+	
+	//CILNBLSCProcessLib_NAME
+	CILNBLSCProcessLib_NAME = 'CILNBLSCProcessLib'
+	CILNBLSCProcessLib_DIR = CODE_DIR + CILNBLSCProcessLib_NAME + '/'
+	
+	//CILSBVoiceServicesMod
+	CILSBVoiceServicesLib_NAME = 'CILSBVoiceServicesLib'
+	CILSBVoiceServicesLib_DIR = CODE_DIR + CILSBVoiceServicesLib_NAME + '/'
+
+	//CILNBBCHCustomerOrderDetailsMod
+	CILNBBCHCustomerOrderDetailsLib_NAME = 'CILNBBCHCustomerOrderDetailsLib'
+	CILNBBCHCustomerOrderDetailsLib_DIR = CODE_DIR + CILNBBCHCustomerOrderDetailsLib_NAME + '/'
+
+	//CILNBAutoCompleteBatchModule
+	
+	//VoiceBPMStubWeb
+	VoiceBPMStubWeb_NAME = 'VoiceBPMStubWeb'
+	VoiceBPMStubWeb_DIR = CODE_DIR + VoiceBPMStubWeb_NAME + '/'
+
+	//CILSBWirelessProvisioningLib - 20180309 by Ralph Wang
+	CILSBWirelessProvisioningLib_NAME = 'CILSBWirelessProvisioningLib'
+	CILSBWirelessProvisioningLib_DIR = CILSBWirelessProvisioningLib_NAME + '/'
+
+	// New Libraries modules will be added here
+
+//********** Start of module properties **********//
+
+	//CIL_WatchDogMod
+	CIL_WatchDogMod_NAME = 'CIL_WatchDogMod'
+	CIL_WatchDogMod_DIR = CODE_DIR + CIL_WatchDogMod_NAME + '/'
+	CIL_WatchDogMod_TEMP_DIR = TEMP_DIR + CIL_WatchDogMod_NAME + '/'
+	CIL_WatchDogMod_PI = CIL_WatchDogMod_NAME + '.zip'
+	CIL_WatchDogMod_EAR = CIL_WatchDogMod_NAME + 'App.ear'
+	CIL_WatchDogMod_SCA_MODULE = TEMP_DIR + CIL_WatchDogMod_PI
+	CIL_WatchDogMod_OUTPUT_APPLICATION = DIST_DIR + CIL_WatchDogMod_EAR
+	CIL_WatchDogMod_EXPORT_ENTRIES = [CIL_WatchDogMod_NAME, 
+										CIL_WatchDogUtility_NAME, 
+										CILDBAdaptersLib_NAME,
+										CILDBAdaptersV2Lib_NAME,
+										CWYEM_EMail_NAME, 
+										CILApplicationUtil_NAME]
+
+	//CILBatchFileMod - 20171113
+	CILBatchFileMod_NAME = 'CILBatchFileMod'
+	CILBatchFileMod_DIR = CODE_DIR + CILBatchFileMod_NAME + '/'
+	CILBatchFileMod_TEMP_DIR = TEMP_DIR + CILBatchFileMod_NAME + '/'
+	CILBatchFileMod_PI = CILBatchFileMod_NAME + '.zip'
+	CILBatchFileMod_EAR = CILBatchFileMod_NAME + 'App.ear'
+	CILBatchFileMod_SCA_MODULE = TEMP_DIR + CILBatchFileMod_PI
+	CILBatchFileMod_OUTPUT_APPLICATION = DIST_DIR + CILBatchFileMod_EAR
+	CILBatchFileMod_EXPORT_ENTRIES = [CILBatchFileMod_NAME, 
+										CWYFF_FlatFile2_NAME, 
+										CILDBAdaptersLib_NAME,
+										CILDBAdaptersV2Lib_NAME,  
+										CILNBCOMNotificationLib_NAME, 
+										CWYBC_JDBC_NAME, 
+										CILBatchProcessorLib_NAME,
+										BCHSchemaLib_NAME,
+											CILCommonLib_NAME,
+											COMSchemaLib_NAME, 
+											OMFSchemaLib_NAME, 
+											CILSchemaLib_NAME]
+
+	//CILBatchValidatorMod
+	CILBatchValidatorMod_NAME = 'CILBatchValidatorMod'
+	CILBatchValidatorMod_DIR = CODE_DIR + CILBatchValidatorMod_NAME + '/'
+	CILBatchValidatorMod_TEMP_DIR = TEMP_DIR + CILBatchValidatorMod_NAME + '/'
+	CILBatchValidatorMod_PI = CILBatchValidatorMod_NAME + '.zip'
+	CILBatchValidatorMod_EAR = CILBatchValidatorMod_NAME + 'App.ear'
+	CILBatchValidatorMod_SCA_MODULE = TEMP_DIR + CILBatchValidatorMod_PI
+	CILBatchValidatorMod_OUTPUT_APPLICATION = DIST_DIR + CILBatchValidatorMod_EAR
+	CILBatchValidatorMod_EXPORT_ENTRIES = [CILBatchValidatorMod_NAME, 
+											CILDBAdaptersLib_NAME, 
+											CILBatchProcessorLib_NAME,
+											CILDBAdaptersV2Lib_NAME]
+
+	//CILBREEHandlerMod - 20171113
+	CILBREEHandlerMod_NAME = 'CILBREEHandlerMod'
+	CILBREEHandlerMod_DIR = CODE_DIR + CILBREEHandlerMod_NAME + '/'
+	CILBREEHandlerMod_TEMP_DIR = TEMP_DIR + CILBREEHandlerMod_NAME + '/'
+	CILBREEHandlerMod_PI = CILBREEHandlerMod_NAME + '.zip'
+	CILBREEHandlerMod_EAR = CILBREEHandlerMod_NAME + 'App.ear'
+	CILBREEHandlerMod_SCA_MODULE = TEMP_DIR + CILBREEHandlerMod_PI
+	CILBREEHandlerMod_OUTPUT_APPLICATION = DIST_DIR + CILBREEHandlerMod_EAR
+	CILBREEHandlerMod_EXPORT_ENTRIES = [CILBREEHandlerMod_NAME, 
+										CILBREEHandlerLib_NAME, 
+										CILCommonLib_NAME, 
+										CILApplicationUtil_NAME, 
+										CILDBAdaptersV2Lib_NAME,
+												COMSchemaLib_NAME, 
+												OMFSchemaLib_NAME, 
+												BCHSchemaLib_NAME,
+												CILSchemaLib_NAME]
+
+	//CILCOMInterfaceMod - 20171113
+	CILCOMInterfaceMod_NAME = 'CILCOMInterfaceMod'
+	CILCOMInterfaceMod_DIR = CODE_DIR + CILCOMInterfaceMod_NAME + '/'
+	CILCOMInterfaceMod_TEMP_DIR = TEMP_DIR + CILCOMInterfaceMod_NAME + '/'
+	CILCOMInterfaceMod_PI = CILCOMInterfaceMod_NAME + '.zip'
+	CILCOMInterfaceMod_EAR = CILCOMInterfaceMod_NAME + 'App.ear'
+	CILCOMInterfaceMod_SCA_MODULE = TEMP_DIR + CILCOMInterfaceMod_PI
+	CILCOMInterfaceMod_OUTPUT_APPLICATION = DIST_DIR + CILCOMInterfaceMod_EAR
+	CILCOMInterfaceMod_EXPORT_ENTRIES = [CILCOMInterfaceMod_NAME, 
+											CILCommonLib_NAME,  
+											CILDBAdaptersLib_NAME, 
+											WEBSPHERE_DEFAULT_MESSAGING_PROVIDER_NAME,
+											COMSchemaLib_NAME,
+											CILSchemaLib_NAME,
+											CILApplicationUtil_NAME,
+												OMFSchemaLib_NAME]
+
+	//CILCommonGatewayMod - 20171113
+	CILCommonGatewayMod_NAME = 'CILCommonGatewayMod'
+	CILCommonGatewayMod_DIR = CODE_DIR + CILCommonGatewayMod_NAME + '/'
+	CILCommonGatewayMod_TEMP_DIR = TEMP_DIR + CILCommonGatewayMod_NAME + '/'
+	CILCommonGatewayMod_PI = CILCommonGatewayMod_NAME + '.zip'
+	CILCommonGatewayMod_EAR = CILCommonGatewayMod_NAME + 'App.ear'
+	CILCommonGatewayMod_SCA_MODULE = TEMP_DIR + CILCommonGatewayMod_PI
+	CILCommonGatewayMod_OUTPUT_APPLICATION = DIST_DIR + CILCommonGatewayMod_EAR
+	CILCommonGatewayMod_EXPORT_ENTRIES = [CILCommonGatewayMod_NAME, 
+											CILCommonLib_NAME, 
+											CILDBAdaptersLib_NAME, 
+											CILDBAdaptersV2Lib_NAME,
+											CILSchemaLib_NAME,
+												COMSchemaLib_NAME, 
+												OMFSchemaLib_NAME,
+												CILApplicationUtil_NAME]
+
+	//CILCommonMod - 20171113
+	CILCommonMod_NAME = 'CILCommonMod'
+	CILCommonMod_DIR = CODE_DIR + CILCommonMod_NAME + '/'
+	CILCommonMod_TEMP_DIR = TEMP_DIR + CILCommonMod_NAME + '/'
+	CILCommonMod_PI = CILCommonMod_NAME + '.zip'
+	CILCommonMod_EAR = CILCommonMod_NAME + 'App.ear'
+	CILCommonMod_SCA_MODULE = TEMP_DIR + CILCommonMod_PI
+	CILCommonMod_OUTPUT_APPLICATION = DIST_DIR + CILCommonMod_EAR
+	CILCommonMod_EXPORT_ENTRIES = [CILCommonMod_NAME, 
+									CILCommonLib_NAME, 
+									CILDBAdaptersLib_NAME, 
+									CILDBAdaptersV2Lib_NAME, 
+									CILApplicationUtil_NAME,
+									CILSchemaLib_NAME,
+										COMSchemaLib_NAME, 
+										OMFSchemaLib_NAME]
+
+	//CILDBAdaptersMed
+	CILDBAdaptersMed_NAME = 'CILDBAdaptersMed'
+	CILDBAdaptersMed_DIR = CODE_DIR + CILDBAdaptersMed_NAME + '/'
+	CILDBAdaptersMed_TEMP_DIR = TEMP_DIR + CILDBAdaptersMed_NAME + '/'
+	CILDBAdaptersMed_PI = CILDBAdaptersMed_NAME + '.zip'
+	CILDBAdaptersMed_EAR = CILDBAdaptersMed_NAME + 'App.ear'
+	CILDBAdaptersMed_SCA_MODULE = TEMP_DIR + CILDBAdaptersMed_PI
+	CILDBAdaptersMed_OUTPUT_APPLICATION = DIST_DIR + CILDBAdaptersMed_EAR
+	CILDBAdaptersMed_EXPORT_ENTRIES = [CILDBAdaptersMed_NAME, 
+										CILDBAdaptersLib_NAME,
+										CILApplicationUtil_NAME,
+										CWYBC_JDBC_NAME]
+
+	//CILDBAdaptersV2Med
+	CILDBAdaptersV2Med_NAME = 'CILDBAdaptersV2Med'
+	CILDBAdaptersV2Med_DIR = CODE_DIR + CILDBAdaptersV2Med_NAME + '/'
+	CILDBAdaptersV2Med_TEMP_DIR = TEMP_DIR + CILDBAdaptersV2Med_NAME + '/'
+	CILDBAdaptersV2Med_PI = CILDBAdaptersV2Med_NAME + '.zip'
+	CILDBAdaptersV2Med_EAR = CILDBAdaptersV2Med_NAME + 'App.ear'
+	CILDBAdaptersV2Med_SCA_MODULE = TEMP_DIR + CILDBAdaptersV2Med_PI
+	CILDBAdaptersV2Med_OUTPUT_APPLICATION = DIST_DIR + CILDBAdaptersV2Med_EAR
+	CILDBAdaptersV2Med_EXPORT_ENTRIES = [CILDBAdaptersV2Med_NAME, 
+											CILDBAdaptersV2Lib_NAME, 
+											CWYBC_JDBC_NAME,
+											CILApplicationUtil_NAME,
+											CILSchemaLib_NAME,
+												COMSchemaLib_NAME,
+												OMFSchemaLib_NAME]
+
+	//CILNBBCHCustomerOrderMod - 20171113
+	CILNBBCHCustomerOrderMod_NAME = 'CILNBBCHCustomerOrderMod'
+	CILNBBCHCustomerOrderMod_DIR = CODE_DIR + CILNBBCHCustomerOrderMod_NAME + '/'
+	CILNBBCHCustomerOrderMod_TEMP_DIR = TEMP_DIR + CILNBBCHCustomerOrderMod_NAME + '/'
+	CILNBBCHCustomerOrderMod_PI = CILNBBCHCustomerOrderMod_NAME + '.zip'
+	CILNBBCHCustomerOrderMod_EAR = CILNBBCHCustomerOrderMod_NAME + 'App.ear'
+	CILNBBCHCustomerOrderMod_SCA_MODULE = TEMP_DIR + CILNBBCHCustomerOrderMod_PI
+	CILNBBCHCustomerOrderMod_OUTPUT_APPLICATION = DIST_DIR + CILNBBCHCustomerOrderMod_EAR
+	CILNBBCHCustomerOrderMod_EXPORT_ENTRIES = [CILNBBCHCustomerOrderMod_NAME, 
+												CILNBBCHCustomerOrderLib_NAME, 
+												CILCommonLib_NAME, 
+												COMSchemaLib_NAME, 
+												OMFSchemaLib_NAME, 
+												CILSchemaLib_NAME,
+												BCHSchemaLib_NAME,
+												CILDBAdaptersLib_NAME,
+												CILDBAdaptersV2Lib_NAME, 
+												CILBREEHandlerLib_NAME, 
+												CILApplicationUtil_NAME,
+												CILROMLib_NAME]
+
+	//CILNBCommonProcessMod - 20171113
+	CILNBCommonProcessMod_NAME = 'CILNBCommonProcessMod'
+	CILNBCommonProcessMod_DIR = CODE_DIR + CILNBCommonProcessMod_NAME + '/'
+	CILNBCommonProcessMod_TEMP_DIR = TEMP_DIR + CILNBCommonProcessMod_NAME + '/'
+	CILNBCommonProcessMod_PI = CILNBCommonProcessMod_NAME + '.zip'
+	CILNBCommonProcessMod_EAR = CILNBCommonProcessMod_NAME + 'App.ear'
+	CILNBCommonProcessMod_SCA_MODULE = TEMP_DIR + CILNBCommonProcessMod_PI
+	CILNBCommonProcessMod_OUTPUT_APPLICATION = DIST_DIR + CILNBCommonProcessMod_EAR
+	CILNBCommonProcessMod_EXPORT_ENTRIES = [CILNBCommonProcessMod_NAME, 
+												CILNBOMFCustomerOrderLib_NAME, 
+												CILCommonLib_NAME,
+												CILDBAdaptersV2Lib_NAME, 
+												CILDBAdaptersLib_NAME, 
+												CILApplicationUtil_NAME,
+												CWYBC_JDBC_NAME,
+												COMSchemaLib_NAME,
+												OMFSchemaLib_NAME,
+												BCHSchemaLib_NAME,
+												CILSchemaLib_NAME]
+
+	//CILNBCOMNotificationMod - 20171113
+	CILNBCOMNotificationMod_NAME = 'CILNBCOMNotificationMod'
+	CILNBCOMNotificationMod_DIR = CODE_DIR + CILNBCOMNotificationMod_NAME + '/'
+	CILNBCOMNotificationMod_TEMP_DIR = TEMP_DIR + CILNBCOMNotificationMod_NAME + '/'
+	CILNBCOMNotificationMod_PI = CILNBCOMNotificationMod_NAME + '.zip'
+	CILNBCOMNotificationMod_EAR = CILNBCOMNotificationMod_NAME + 'App.ear'
+	CILNBCOMNotificationMod_SCA_MODULE = TEMP_DIR + CILNBCOMNotificationMod_PI
+	CILNBCOMNotificationMod_OUTPUT_APPLICATION = DIST_DIR + CILNBCOMNotificationMod_EAR
+	CILNBCOMNotificationMod_EXPORT_ENTRIES = [CILNBCOMNotificationMod_NAME, 
+												CILNBCOMNotificationLib_NAME, 
+												CILCommonLib_NAME, 
+												CILDBAdaptersLib_NAME,
+												CILDBAdaptersV2Lib_NAME,
+												CILApplicationUtil_NAME,
+													COMSchemaLib_NAME,
+													OMFSchemaLib_NAME,
+													CILSchemaLib_NAME,
+													BCHSchemaLib_NAME]
+
+	//CILNBDigitekFeedbackMod - 20171113
+	CILNBDigitekFeedbackMod_NAME = 'CILNBDigitekFeedbackMod'
+	CILNBDigitekFeedbackMod_DIR = CODE_DIR + CILNBDigitekFeedbackMod_NAME + '/'
+	CILNBDigitekFeedbackMod_TEMP_DIR = TEMP_DIR + CILNBDigitekFeedbackMod_NAME + '/'
+	CILNBDigitekFeedbackMod_PI = CILNBDigitekFeedbackMod_NAME + '.zip'
+	CILNBDigitekFeedbackMod_EAR = CILNBDigitekFeedbackMod_NAME + 'App.ear'
+	CILNBDigitekFeedbackMod_SCA_MODULE = TEMP_DIR + CILNBDigitekFeedbackMod_PI
+	CILNBDigitekFeedbackMod_OUTPUT_APPLICATION = DIST_DIR + CILNBDigitekFeedbackMod_EAR
+	CILNBDigitekFeedbackMod_EXPORT_ENTRIES = [CILNBDigitekFeedbackMod_NAME, 
+												CILCommonLib_NAME, 
+												CILDBAdaptersV2Lib_NAME,
+												CILApplicationUtil_NAME,
+												CILSchemaLib_NAME,
+												OMFSchemaLib_NAME,
+													COMSchemaLib_NAME]
+
+	//CILNBOMFCustomerNotificationProcess - 20171113
+	CILNBOMFCustomerNotificationProcess_NAME = 'CILNBOMFCustomerNotificationProcess'
+	CILNBOMFCustomerNotificationProcess_DIR = CODE_DIR + CILNBOMFCustomerNotificationProcess_NAME + '/'
+	CILNBOMFCustomerNotificationProcess_TEMP_DIR = TEMP_DIR + CILNBOMFCustomerNotificationProcess_NAME + '/'
+	CILNBOMFCustomerNotificationProcess_PI = CILNBOMFCustomerNotificationProcess_NAME + '.zip'
+	CILNBOMFCustomerNotificationProcess_EAR = CILNBOMFCustomerNotificationProcess_NAME + 'App.ear'
+	CILNBOMFCustomerNotificationProcess_SCA_MODULE = TEMP_DIR + CILNBOMFCustomerNotificationProcess_PI
+	CILNBOMFCustomerNotificationProcess_OUTPUT_APPLICATION = DIST_DIR + CILNBOMFCustomerNotificationProcess_EAR
+	CILNBOMFCustomerNotificationProcess_EXPORT_ENTRIES = [CILNBOMFCustomerNotificationProcess_NAME, 
+															WEBSPHERE_DEFAULT_MESSAGING_PROVIDER_NAME, 
+															CILCommonLib_NAME,
+															CILDBAdaptersLib_NAME,
+															CILDBAdaptersV2Lib_NAME,
+															CILNBOMFCustomerOrderLib_NAME, 
+															CILNBOMFCustomerNotificationProcessLib_NAME, 
+															CILApplicationUtil_NAME, 
+															CILBREEHandlerLib_NAME, 
+															OMFSchemaLib_NAME,
+															COMSchemaLib_NAME,
+															CILSchemaLib_NAME,
+																BCHSchemaLib_NAME]
+
+	//CILNBOMFCustomerOrderMod - 20171113
+	CILNBOMFCustomerOrderMod_NAME = 'CILNBOMFCustomerOrderMod'
+	CILNBOMFCustomerOrderMod_DIR = CODE_DIR + CILNBOMFCustomerOrderMod_NAME + '/'
+	CILNBOMFCustomerOrderMod_TEMP_DIR = TEMP_DIR + CILNBOMFCustomerOrderMod_NAME + '/'
+	CILNBOMFCustomerOrderMod_PI = CILNBOMFCustomerOrderMod_NAME + '.zip'
+	CILNBOMFCustomerOrderMod_EAR = CILNBOMFCustomerOrderMod_NAME + 'App.ear'
+	CILNBOMFCustomerOrderMod_SCA_MODULE = TEMP_DIR + CILNBOMFCustomerOrderMod_PI
+	CILNBOMFCustomerOrderMod_OUTPUT_APPLICATION = DIST_DIR + CILNBOMFCustomerOrderMod_EAR
+	CILNBOMFCustomerOrderMod_EXPORT_ENTRIES = [CILNBOMFCustomerOrderMod_NAME, 
+												WEBSPHERE_DEFAULT_MESSAGING_PROVIDER_NAME,
+												CILCommonLib_NAME, 
+												CILDBAdaptersLib_NAME, 
+												CILNBOMFCustomerOrderLib_NAME,
+												CILApplicationUtil_NAME, 
+												CILBREEHandlerLib_NAME, 
+												CILDBAdaptersV2Lib_NAME, 
+												OMFSchemaLib_NAME,
+												COMSchemaLib_NAME,
+												CILSchemaLib_NAME,
+												BCHSchemaLib_NAME]
+
+	//CILProcessPayment_Stub - 20171113
+	CILProcessPayment_Stub_NAME = 'CILProcessPayment_Stub'
+	CILProcessPayment_Stub_DIR = CODE_DIR + CILProcessPayment_Stub_NAME + '/'
+	CILProcessPayment_Stub_TEMP_DIR = TEMP_DIR + CILProcessPayment_Stub_NAME + '/'
+	CILProcessPayment_Stub_PI = CILProcessPayment_Stub_NAME + '.zip'
+	CILProcessPayment_Stub_EAR = CILProcessPayment_Stub_NAME + 'App.ear'
+	CILProcessPayment_Stub_SCA_MODULE = TEMP_DIR + CILProcessPayment_Stub_PI
+	CILProcessPayment_Stub_OUTPUT_APPLICATION = DIST_DIR + CILProcessPayment_Stub_EAR
+	CILProcessPayment_Stub_EXPORT_ENTRIES = [CILProcessPayment_Stub_NAME, 
+												CILProcessPaymentLib_NAME, 
+												CILCommonLib_NAME, 
+													OMFSchemaLib_NAME,
+													COMSchemaLib_NAME,
+													CILSchemaLib_NAME]
+
+	//CILSBProcessPaymentMod - 20171113
+	CILSBProcessPaymentMod_NAME = 'CILSBProcessPaymentMod'
+	CILSBProcessPaymentMod_DIR = CODE_DIR + CILSBProcessPaymentMod_NAME + '/'
+	CILSBProcessPaymentMod_TEMP_DIR = TEMP_DIR + CILSBProcessPaymentMod_NAME + '/'
+	CILSBProcessPaymentMod_PI = CILSBProcessPaymentMod_NAME + '.zip'
+	CILSBProcessPaymentMod_EAR = CILSBProcessPaymentMod_NAME + 'App.ear'
+	CILSBProcessPaymentMod_SCA_MODULE = TEMP_DIR + CILSBProcessPaymentMod_PI
+	CILSBProcessPaymentMod_OUTPUT_APPLICATION = DIST_DIR + CILSBProcessPaymentMod_EAR
+	CILSBProcessPaymentMod_EXPORT_ENTRIES = [CILSBProcessPaymentMod_NAME, 
+												CILProcessPaymentLib_NAME, 
+												CILCommonLib_NAME, 
+												CILDBAdaptersLib_NAME, 
+												CILDBAdaptersV2Lib_NAME, 
+												CILApplicationUtil_NAME,
+												CILSchemaLib_NAME,
+												COMSchemaLib_NAME,
+													OMFSchemaLib_NAME]
+
+	//CILRetryMed - 20171113
+	CILRetryMed_NAME = 'CILRetryMed'
+	CILRetryMed_DIR = CODE_DIR + CILRetryMed_NAME + '/'
+	CILRetryMed_TEMP_DIR = TEMP_DIR + CILRetryMed_NAME + '/'
+	CILRetryMed_PI = CILRetryMed_NAME + '.zip'
+	CILRetryMed_EAR = CILRetryMed_NAME + 'App.ear'
+	CILRetryMed_SCA_MODULE = TEMP_DIR + CILRetryMed_PI
+	CILRetryMed_OUTPUT_APPLICATION = DIST_DIR + CILRetryMed_EAR
+	CILRetryMed_EXPORT_ENTRIES = [CILRetryMed_NAME, 
+									CILRetryLib_NAME, 
+									CILCommonLib_NAME, 
+									CILDBAdaptersLib_NAME, 
+									CILDBAdaptersV2Lib_NAME,
+									CILApplicationUtil_NAME,
+									CILSchemaLib_NAME,
+										OMFSchemaLib_NAME,
+										COMSchemaLib_NAME]
+
+	//CILRetryV2Med - 20171120
+	CILRetryV2Med_NAME = 'CILRetryV2Med'
+	CILRetryV2Med_DIR = CODE_DIR + CILRetryV2Med_NAME + '/'
+	CILRetryV2Med_TEMP_DIR = TEMP_DIR + CILRetryV2Med_NAME + '/'
+	CILRetryV2Med_PI = CILRetryV2Med_NAME + '.zip'
+	CILRetryV2Med_EAR = CILRetryV2Med_NAME + 'App.ear'
+	CILRetryV2Med_SCA_MODULE = TEMP_DIR + CILRetryV2Med_PI
+	CILRetryV2Med_OUTPUT_APPLICATION = DIST_DIR + CILRetryV2Med_EAR
+	CILRetryV2Med_EXPORT_ENTRIES = [CILRetryV2Med_NAME, 
+									CILCommonLib_NAME, 
+									CILDBAdaptersLib_NAME, 
+									CILDBAdaptersV2Lib_NAME,
+										COMSchemaLib_NAME,
+										OMFSchemaLib_NAME,
+										CILSchemaLib_NAME,
+										CILApplicationUtil_NAME]
+
+	//CILSBBupNotificationMod - 20171113
+	CILSBBupNotificationMod_NAME = 'CILSBBupNotificationMod'
+	CILSBBupNotificationMod_DIR = CODE_DIR + CILSBBupNotificationMod_NAME + '/'
+	CILSBBupNotificationMod_TEMP_DIR = TEMP_DIR + CILSBBupNotificationMod_NAME + '/'
+	CILSBBupNotificationMod_PI = CILSBBupNotificationMod_NAME + '.zip'
+	CILSBBupNotificationMod_EAR = CILSBBupNotificationMod_NAME + 'App.ear'
+	CILSBBupNotificationMod_SCA_MODULE = TEMP_DIR + CILSBBupNotificationMod_PI
+	CILSBBupNotificationMod_OUTPUT_APPLICATION = DIST_DIR + CILSBBupNotificationMod_EAR
+	CILSBBupNotificationMod_EXPORT_ENTRIES = [CILSBBupNotificationMod_NAME, 
+												CILSBBupNotificationLib_NAME, 
+												CILCommonLib_NAME, 
+												CILApplicationUtil_NAME,
+												COMSchemaLib_NAME,
+												CILSchemaLib_NAME,
+													OMFSchemaLib_NAME]
+
+	//CILSBSuppressNM1BillingMod - 20171113
+	CILSBSuppressNM1BillingMod_NAME = 'CILSBSuppressNM1BillingMod'
+	CILSBSuppressNM1BillingMod_DIR = CODE_DIR + CILSBSuppressNM1BillingMod_NAME + '/'
+	CILSBSuppressNM1BillingMod_TEMP_DIR = TEMP_DIR + CILSBSuppressNM1BillingMod_NAME + '/'
+	CILSBSuppressNM1BillingMod_PI = CILSBSuppressNM1BillingMod_NAME + '.zip'
+	CILSBSuppressNM1BillingMod_EAR = CILSBSuppressNM1BillingMod_NAME + 'App.ear'
+	CILSBSuppressNM1BillingMod_SCA_MODULE = TEMP_DIR + CILSBSuppressNM1BillingMod_PI
+	CILSBSuppressNM1BillingMod_OUTPUT_APPLICATION = DIST_DIR + CILSBSuppressNM1BillingMod_EAR
+	CILSBSuppressNM1BillingMod_EXPORT_ENTRIES = [CILSBSuppressNM1BillingMod_NAME, 
+													CILCommonLib_NAME, 
+													CILDBAdaptersV2Lib_NAME,
+													CILDBAdaptersLib_NAME,
+													CILApplicationUtil_NAME,
+													COMSchemaLib_NAME,
+													CILSchemaLib_NAME,
+														OMFSchemaLib_NAME]
+
+	//CILSBCreditDecisionMod - 20171113
+	CILSBCreditDecisionMod_NAME = 'CILSBCreditDecisionMod'
+	CILSBCreditDecisionMod_DIR = CODE_DIR + CILSBCreditDecisionMod_NAME + '/'
+	CILSBCreditDecisionMod_TEMP_DIR = TEMP_DIR + CILSBCreditDecisionMod_NAME + '/'
+	CILSBCreditDecisionMod_PI = CILSBCreditDecisionMod_NAME + '.zip'
+	CILSBCreditDecisionMod_EAR = CILSBCreditDecisionMod_NAME + 'App.ear'
+	CILSBCreditDecisionMod_SCA_MODULE = TEMP_DIR + CILSBCreditDecisionMod_PI
+	CILSBCreditDecisionMod_OUTPUT_APPLICATION = DIST_DIR + CILSBCreditDecisionMod_EAR
+	CILSBCreditDecisionMod_EXPORT_ENTRIES = [CILSBCreditDecisionMod_NAME, 
+												CILSBCreditDecisionLib_NAME, 
+												CILCommonLib_NAME, 
+												CILDBAdaptersV2Lib_NAME,
+												CILApplicationUtil_NAME,
+												COMSchemaLib_NAME,
+												CILSchemaLib_NAME,
+													OMFSchemaLib_NAME]
+
+	//CILSBOneBillMod - 20171113
+	CILSBOneBillMod_NAME = 'CILSBOneBillMod'
+	CILSBOneBillMod_DIR = CODE_DIR + CILSBOneBillMod_NAME + '/'
+	CILSBOneBillMod_TEMP_DIR = TEMP_DIR + CILSBOneBillMod_NAME + '/'
+	CILSBOneBillMod_PI = CILSBOneBillMod_NAME + '.zip'
+	CILSBOneBillMod_EAR = CILSBOneBillMod_NAME + 'App.ear'
+	CILSBOneBillMod_SCA_MODULE = TEMP_DIR + CILSBOneBillMod_PI
+	CILSBOneBillMod_OUTPUT_APPLICATION = DIST_DIR + CILSBOneBillMod_EAR
+	CILSBOneBillMod_EXPORT_ENTRIES = [CILSBOneBillMod_NAME, 
+										CILSBOneBillLib_NAME, 
+										CILCommonLib_NAME, 
+										CILDBAdaptersV2Lib_NAME,
+										CILApplicationUtil_NAME,
+										COMSchemaLib_NAME,
+										CILSchemaLib_NAME,
+										BCHSchemaLib_NAME,
+											OMFSchemaLib_NAME]
+
+	//CILSBReserveNM1BANMod - 20171113
+	CILSBReserveNM1BANMod_NAME = 'CILSBReserveNM1BANMod'
+	CILSBReserveNM1BANMod_DIR = CODE_DIR + CILSBReserveNM1BANMod_NAME + '/'
+	CILSBReserveNM1BANMod_TEMP_DIR = TEMP_DIR + CILSBReserveNM1BANMod_NAME + '/'
+	CILSBReserveNM1BANMod_PI = CILSBReserveNM1BANMod_NAME + '.zip'
+	CILSBReserveNM1BANMod_EAR = CILSBReserveNM1BANMod_NAME + 'App.ear'
+	CILSBReserveNM1BANMod_SCA_MODULE = TEMP_DIR + CILSBReserveNM1BANMod_PI
+	CILSBReserveNM1BANMod_OUTPUT_APPLICATION = DIST_DIR + CILSBReserveNM1BANMod_EAR
+	CILSBReserveNM1BANMod_EXPORT_ENTRIES = [CILSBReserveNM1BANMod_NAME, 
+												CILSBReserveNM1BANLib_NAME, 
+												CILCommonLib_NAME, 
+												CWYBC_JDBC_NAME, 
+												CILDBAdaptersLib_NAME, 
+												CWYBC_JDBC_NAME, 
+												CILApplicationUtil_NAME, 
+												CILDBAdaptersV2Lib_NAME, 
+												CILSchemaLib_NAME,
+												COMSchemaLib_NAME,
+													OMFSchemaLib_NAME]
+
+	//CILSBroadbandProvisioningModule - 20171113
+	CILSBroadbandProvisioningModule_NAME = 'CILSBroadbandProvisioningModule'
+	CILSBroadbandProvisioningModule_DIR = CODE_DIR + CILSBroadbandProvisioningModule_NAME + '/'
+	CILSBroadbandProvisioningModule_TEMP_DIR = TEMP_DIR + CILSBroadbandProvisioningModule_NAME + '/'
+	CILSBroadbandProvisioningModule_PI = CILSBroadbandProvisioningModule_NAME + '.zip'
+	CILSBroadbandProvisioningModule_EAR = CILSBroadbandProvisioningModule_NAME + 'App.ear'
+	CILSBroadbandProvisioningModule_SCA_MODULE = TEMP_DIR + CILSBroadbandProvisioningModule_PI
+	CILSBroadbandProvisioningModule_OUTPUT_APPLICATION = DIST_DIR + CILSBroadbandProvisioningModule_EAR
+	CILSBroadbandProvisioningModule_EXPORT_ENTRIES = [CILSBroadbandProvisioningModule_NAME, 
+														CILSBroadbandProvLib_NAME, 
+														CILCommonLib_NAME, 
+														CILDBAdaptersV2Lib_NAME, 
+														CILApplicationUtil_NAME,
+														CWYBC_JDBC_NAME,
+														CILBREEHandlerLib_NAME,
+														COMSchemaLib_NAME,
+														BCHSchemaLib_NAME,
+														CILSchemaLib_NAME,
+															OMFSchemaLib_NAME]
+
+	//CILSBScheduleAppointment - 20171113
+	CILSBScheduleAppointment_NAME = 'CILSBScheduleAppointment'
+	CILSBScheduleAppointment_DIR = CODE_DIR + CILSBScheduleAppointment_NAME + '/'
+	CILSBScheduleAppointment_TEMP_DIR = TEMP_DIR + CILSBScheduleAppointment_NAME + '/'
+	CILSBScheduleAppointment_PI = CILSBScheduleAppointment_NAME + '.zip'
+	CILSBScheduleAppointment_EAR = CILSBScheduleAppointment_NAME + 'App.ear'
+	CILSBScheduleAppointment_SCA_MODULE = TEMP_DIR + CILSBScheduleAppointment_PI
+	CILSBScheduleAppointment_OUTPUT_APPLICATION = DIST_DIR + CILSBScheduleAppointment_EAR
+	CILSBScheduleAppointment_EXPORT_ENTRIES = [CILSBScheduleAppointment_NAME, 
+												CILSBScheduleAppointmentLib_NAME, 
+												CILCommonLib_NAME, 
+												CILDBAdaptersLib_NAME, 
+												CILDBAdaptersV2Lib_NAME, 
+												CWYBC_JDBC_NAME,
+												CILApplicationUtil_NAME,
+													CILSchemaLib_NAME,
+													COMSchemaLib_NAME,
+													OMFSchemaLib_NAME]
+
+	//CILSubmitFalloutMod - 20171113
+	CILSubmitFalloutMod_NAME = 'CILSubmitFalloutMod'
+	CILSubmitFalloutMod_DIR = CODE_DIR + CILSubmitFalloutMod_NAME + '/'
+	CILSubmitFalloutMod_TEMP_DIR = TEMP_DIR + CILSubmitFalloutMod_NAME + '/'
+	CILSubmitFalloutMod_PI = CILSubmitFalloutMod_NAME + '.zip'
+	CILSubmitFalloutMod_EAR = CILSubmitFalloutMod_NAME + 'App.ear'
+	CILSubmitFalloutMod_SCA_MODULE = TEMP_DIR + CILSubmitFalloutMod_PI
+	CILSubmitFalloutMod_OUTPUT_APPLICATION = DIST_DIR + CILSubmitFalloutMod_EAR
+	CILSubmitFalloutMod_EXPORT_ENTRIES = [CILSubmitFalloutMod_NAME, 
+											CILSubmitFalloutLib_NAME, 
+											CILCommonLib_NAME, 
+											CILDBAdaptersLib_NAME, 
+											CILDBAdaptersV2Lib_NAME, 
+											CILApplicationUtil_NAME, 
+											BCHSchemaLib_NAME,
+											COMSchemaLib_NAME,
+											CILSchemaLib_NAME,
+											OMFSchemaLib_NAME]
+
+	//CILSBSubmitShippingOrderMod - 20171113
+	CILSBSubmitShippingOrderMod_NAME = 'CILSBSubmitShippingOrderMod'
+	CILSBSubmitShippingOrderMod_DIR = CODE_DIR + CILSBSubmitShippingOrderMod_NAME + '/'
+	CILSBSubmitShippingOrderMod_TEMP_DIR = TEMP_DIR + CILSBSubmitShippingOrderMod_NAME + '/'
+	CILSBSubmitShippingOrderMod_PI = CILSBSubmitShippingOrderMod_NAME + '.zip'
+	CILSBSubmitShippingOrderMod_EAR = CILSBSubmitShippingOrderMod_NAME + 'App.ear'
+	CILSBSubmitShippingOrderMod_SCA_MODULE = TEMP_DIR + CILSBSubmitShippingOrderMod_PI
+	CILSBSubmitShippingOrderMod_OUTPUT_APPLICATION = DIST_DIR + CILSBSubmitShippingOrderMod_EAR
+	CILSBSubmitShippingOrderMod_EXPORT_ENTRIES = [CILSBSubmitShippingOrderMod_NAME, 
+													CILSBSubmitShippingOrderLib_NAME, 
+													CILCommonLib_NAME, 
+													CILDBAdaptersV2Lib_NAME, 
+													CILApplicationUtil_NAME, 
+														CILSchemaLib_NAME,
+														COMSchemaLib_NAME,
+														OMFSchemaLib_NAME]
+
+	//CILSBVideoProvisioningMod - 20171113
+	CILSBVideoProvisioningMod_NAME = 'CILSBVideoProvisioningMod'
+	CILSBVideoProvisioningMod_DIR = CODE_DIR + CILSBVideoProvisioningMod_NAME + '/'
+	CILSBVideoProvisioningMod_TEMP_DIR = TEMP_DIR + CILSBVideoProvisioningMod_NAME + '/'
+	CILSBVideoProvisioningMod_PI = CILSBVideoProvisioningMod_NAME + '.zip'
+	CILSBVideoProvisioningMod_EAR = CILSBVideoProvisioningMod_NAME + 'App.ear'
+	CILSBVideoProvisioningMod_SCA_MODULE = TEMP_DIR + CILSBVideoProvisioningMod_PI
+	CILSBVideoProvisioningMod_OUTPUT_APPLICATION = DIST_DIR + CILSBVideoProvisioningMod_EAR
+	CILSBVideoProvisioningMod_EXPORT_ENTRIES = [CILSBVideoProvisioningMod_NAME, 
+													CILSBVideoProvisioningLib_NAME, 
+													CILCommonLib_NAME, 
+													CILDBAdaptersV2Lib_NAME, 
+													CILApplicationUtil_NAME, 
+													CILBREEHandlerLib_NAME,
+													CILSchemaLib_NAME,
+													BCHSchemaLib_NAME,
+													COMSchemaLib_NAME,
+													OMFSchemaLib_NAME]
+
+	//CILSBVoiceProvisioningMed - 20171113
+	CILSBVoiceProvisioningMed_NAME = 'CILSBVoiceProvisioningMed'
+	CILSBVoiceProvisioningMed_DIR = CODE_DIR + CILSBVoiceProvisioningMed_NAME + '/'
+	CILSBVoiceProvisioningMed_TEMP_DIR = TEMP_DIR + CILSBVoiceProvisioningMed_NAME + '/'
+	CILSBVoiceProvisioningMed_PI = CILSBVoiceProvisioningMed_NAME + '.zip'
+	CILSBVoiceProvisioningMed_EAR = CILSBVoiceProvisioningMed_NAME + 'App.ear'
+	CILSBVoiceProvisioningMed_SCA_MODULE = TEMP_DIR + CILSBVoiceProvisioningMed_PI
+	CILSBVoiceProvisioningMed_OUTPUT_APPLICATION = DIST_DIR + CILSBVoiceProvisioningMed_EAR
+	CILSBVoiceProvisioningMed_EXPORT_ENTRIES = [CILSBVoiceProvisioningMed_NAME, 
+													CILSBVoiceProvisioningLib_NAME, 
+													CILCommonLib_NAME, 
+													CILDBAdaptersLib_NAME,
+													CILDBAdaptersV2Lib_NAME, 
+													CILApplicationUtil_NAME, 
+													CILBREEHandlerLib_NAME,
+														CILSchemaLib_NAME,
+														BCHSchemaLib_NAME,
+														COMSchemaLib_NAME,
+														OMFSchemaLib_NAME]
+
+	//CILSBVoiceProvisioningResponseMed - 20171113
+	CILSBVoiceProvisioningResponseMed_NAME = 'CILSBVoiceProvisioningResponseMed'
+	CILSBVoiceProvisioningResponseMed_DIR = CODE_DIR + CILSBVoiceProvisioningResponseMed_NAME + '/'
+	CILSBVoiceProvisioningResponseMed_TEMP_DIR = TEMP_DIR + CILSBVoiceProvisioningResponseMed_NAME + '/'
+	CILSBVoiceProvisioningResponseMed_PI = CILSBVoiceProvisioningResponseMed_NAME + '.zip'
+	CILSBVoiceProvisioningResponseMed_EAR = CILSBVoiceProvisioningResponseMed_NAME + 'App.ear'
+	CILSBVoiceProvisioningResponseMed_SCA_MODULE = TEMP_DIR + CILSBVoiceProvisioningResponseMed_PI
+	CILSBVoiceProvisioningResponseMed_OUTPUT_APPLICATION = DIST_DIR + CILSBVoiceProvisioningResponseMed_EAR
+	CILSBVoiceProvisioningResponseMed_EXPORT_ENTRIES = [CILSBVoiceProvisioningResponseMed_NAME, 
+															WEBSPHERE_DEFAULT_MESSAGING_PROVIDER_NAME,
+															CILSBVoiceProvisioningResponseLib_NAME, 
+															CILCommonLib_NAME, 
+															CILDBAdaptersLib_NAME, 
+															CILDBAdaptersV2Lib_NAME, 
+															CILRetryLib_NAME,
+																CILSchemaLib_NAME,
+																COMSchemaLib_NAME,
+																OMFSchemaLib_NAME,
+																CILApplicationUtil_NAME]
+
+	//CILSubmitInstantActivation_Stub - 20171113
+	CILSubmitInstantActivation_Stub_NAME = 'CILSubmitInstantActivation_Stub'
+	CILSubmitInstantActivation_Stub_DIR = CODE_DIR + CILSubmitInstantActivation_Stub_NAME + '/'
+	CILSubmitInstantActivation_Stub_TEMP_DIR = TEMP_DIR + CILSubmitInstantActivation_Stub_NAME + '/'
+	CILSubmitInstantActivation_Stub_PI = CILSubmitInstantActivation_Stub_NAME + '.zip'
+	CILSubmitInstantActivation_Stub_EAR = CILSubmitInstantActivation_Stub_NAME + 'App.ear'
+	CILSubmitInstantActivation_Stub_SCA_MODULE = TEMP_DIR + CILSubmitInstantActivation_Stub_PI
+	CILSubmitInstantActivation_Stub_OUTPUT_APPLICATION = DIST_DIR + CILSubmitInstantActivation_Stub_EAR
+	CILSubmitInstantActivation_Stub_EXPORT_ENTRIES = [CILSubmitInstantActivation_Stub_NAME, 
+														CILSubmitInstantActivationLib_NAME, 
+														CILCommonLib_NAME,  
+															CILDBAdaptersLib_NAME,
+															OMFSchemaLib_NAME,
+															COMSchemaLib_NAME,
+															CILSchemaLib_NAME]
+
+	//CILSBSubmitInstantActivationMod - 20171113
+	CILSBSubmitInstantActivationMod_NAME = 'CILSBSubmitInstantActivationMod'
+	CILSBSubmitInstantActivationMod_DIR = CODE_DIR + CILSBSubmitInstantActivationMod_NAME + '/'
+	CILSBSubmitInstantActivationMod_TEMP_DIR = TEMP_DIR + CILSBSubmitInstantActivationMod_NAME + '/'
+	CILSBSubmitInstantActivationMod_PI = CILSBSubmitInstantActivationMod_NAME + '.zip'
+	CILSBSubmitInstantActivationMod_EAR = CILSBSubmitInstantActivationMod_NAME + 'App.ear'
+	CILSBSubmitInstantActivationMod_SCA_MODULE = TEMP_DIR + CILSBSubmitInstantActivationMod_PI
+	CILSBSubmitInstantActivationMod_OUTPUT_APPLICATION = DIST_DIR + CILSBSubmitInstantActivationMod_EAR
+	CILSBSubmitInstantActivationMod_EXPORT_ENTRIES = [CILSBSubmitInstantActivationMod_NAME, 
+														CILSubmitInstantActivationLib_NAME, 
+														CILCommonLib_NAME, 
+														CILDBAdaptersLib_NAME, 
+														CILDBAdaptersV2Lib_NAME, 
+														CILApplicationUtil_NAME,
+														CILSchemaLib_NAME,
+														COMSchemaLib_NAME,
+														OMFSchemaLib_NAME]
+
+	//CILSubmitOrderUpdateNotifnMed - 20171113
+	CILSubmitOrderUpdateNotifnMed_NAME = 'CILSubmitOrderUpdateNotifnMed'
+	CILSubmitOrderUpdateNotifnMed_DIR = CODE_DIR + CILSubmitOrderUpdateNotifnMed_NAME + '/'
+	CILSubmitOrderUpdateNotifnMed_TEMP_DIR = TEMP_DIR + CILSubmitOrderUpdateNotifnMed_NAME + '/'
+	CILSubmitOrderUpdateNotifnMed_PI = CILSubmitOrderUpdateNotifnMed_NAME + '.zip'
+	CILSubmitOrderUpdateNotifnMed_EAR = CILSubmitOrderUpdateNotifnMed_NAME + 'App.ear'
+	CILSubmitOrderUpdateNotifnMed_SCA_MODULE = TEMP_DIR + CILSubmitOrderUpdateNotifnMed_PI
+	CILSubmitOrderUpdateNotifnMed_OUTPUT_APPLICATION = DIST_DIR + CILSubmitOrderUpdateNotifnMed_EAR
+	CILSubmitOrderUpdateNotifnMed_EXPORT_ENTRIES = [CILSubmitOrderUpdateNotifnMed_NAME, 
+														CILSubmitOrderUpdateNotifnLib_NAME, 
+														CILCommonLib_NAME,
+														CILDBAdaptersLib_NAME,  
+														CILDBAdaptersV2Lib_NAME,
+														CILSchemaLib_NAME,
+														COMSchemaLib_NAME,
+															OMFSchemaLib_NAME]
+
+	//StubProject - 20171113
+	StubProject_NAME = 'StubProject'
+	StubProject_DIR = CODE_DIR + StubProject_NAME + '/'
+	StubProject_TEMP_DIR = TEMP_DIR + StubProject_NAME + '/'
+	StubProject_PI = StubProject_NAME + '.zip'
+	StubProject_EAR = StubProject_NAME + 'App.ear'
+	StubProject_SCA_MODULE = TEMP_DIR + StubProject_PI
+	StubProject_OUTPUT_APPLICATION = DIST_DIR + StubProject_EAR
+	StubProject_EXPORT_ENTRIES = [StubProject_NAME, 
+									StubProjectUtil_NAME,
+									BCHSchemaLib_NAME,
+									CILCommonLib_NAME,
+									CILDBAdaptersLib_NAME,
+									CILSBVoiceServicesLib_NAME,
+									COMSchemaLib_NAME,
+										CILSchemaLib_NAME,
+										OMFSchemaLib_NAME,
+										CILProcessPaymentLib_NAME]
+
+	//CILSBVoiceProvisioningMDB
+	CILSBVoiceProvisioningMDB_NAME = 'CILSBVoiceProvisioningMDB'
+	CILSBVoiceProvisioningMDB_DIR = CODE_DIR + CILSBVoiceProvisioningMDB_NAME + '/'
+
+	//CILSBVoiceProvisioningMDBClient
+	CILSBVoiceProvisioningMDBClient_NAME = 'CILSBVoiceProvisioningMDBClient'
+	CILSBVoiceProvisioningMDBClient_DIR = CODE_DIR + CILSBVoiceProvisioningMDBClient_NAME + '/'
+
+	//CILSBWorkOrderMod - 20171113
+	CILSBWorkOrderMod_NAME = 'CILSBWorkOrderMod'
+	CILSBWorkOrderMod_DIR = CODE_DIR + CILSBWorkOrderMod_NAME + '/'
+	CILSBWorkOrderMod_TEMP_DIR = TEMP_DIR + CILSBWorkOrderMod_NAME + '/'
+	CILSBWorkOrderMod_PI = CILSBWorkOrderMod_NAME + '.zip'
+	CILSBWorkOrderMod_EAR = CILSBWorkOrderMod_NAME + 'App.ear'
+	CILSBWorkOrderMod_SCA_MODULE = TEMP_DIR + CILSBWorkOrderMod_PI
+	CILSBWorkOrderMod_OUTPUT_APPLICATION = DIST_DIR + CILSBWorkOrderMod_EAR
+	CILSBWorkOrderMod_EXPORT_ENTRIES = [CILSBWorkOrderMod_NAME, 
+											CILCommonLib_NAME, 
+											CILDBAdaptersV2Lib_NAME,
+											CILSBWorkOrderLib_NAME,  
+											CILApplicationUtil_NAME,
+											CILBREEHandlerLib_NAME,
+											BCHSchemaLib_NAME,
+											COMSchemaLib_NAME,
+											CILSchemaLib_NAME,
+												OMFSchemaLib_NAME]
+
+	//CILCreateRetrieveNM1Module - 20171114
+	CILCreateRetrieveNM1Module_NAME = 'CILCreateRetrieveNM1Module'
+	CILCreateRetrieveNM1Module_DIR = CODE_DIR + CILCreateRetrieveNM1Module_NAME + '/'
+	CILCreateRetrieveNM1Module_TEMP_DIR = TEMP_DIR + CILCreateRetrieveNM1Module_NAME + '/'
+	CILCreateRetrieveNM1Module_PI = CILCreateRetrieveNM1Module_NAME + '.zip'
+	CILCreateRetrieveNM1Module_EAR = CILCreateRetrieveNM1Module_NAME + 'App.ear'
+	CILCreateRetrieveNM1Module_SCA_MODULE = TEMP_DIR + CILCreateRetrieveNM1Module_PI
+	CILCreateRetrieveNM1Module_OUTPUT_APPLICATION = DIST_DIR + CILCreateRetrieveNM1Module_EAR
+	CILCreateRetrieveNM1Module_EXPORT_ENTRIES = [CILCreateRetrieveNM1Module_NAME, 
+													CILCommonLib_NAME, 
+													CILDBAdaptersV2Lib_NAME,
+													CILCreateRetrieveNM1Lib_NAME,  
+													CILApplicationUtil_NAME,
+													CWYBC_JDBC_NAME,
+														COMSchemaLib_NAME,
+														OMFSchemaLib_NAME,
+														CILSchemaLib_NAME]
+
+	//CILSBSubmitLocalServiceRequestMod - 20171123
+	CILSBSubmitLocalServiceRequestMod_NAME = 'CILSBSubmitLocalServiceRequestMod'
+	CILSBSubmitLocalServiceRequestMod_DIR = CODE_DIR + CILSBSubmitLocalServiceRequestMod_NAME + '/'
+	CILSBSubmitLocalServiceRequestMod_TEMP_DIR = TEMP_DIR + CILSBSubmitLocalServiceRequestMod_NAME + '/'
+	CILSBSubmitLocalServiceRequestMod_PI = CILSBSubmitLocalServiceRequestMod_NAME + '.zip'
+	CILSBSubmitLocalServiceRequestMod_EAR = CILSBSubmitLocalServiceRequestMod_NAME + 'App.ear'
+	CILSBSubmitLocalServiceRequestMod_SCA_MODULE = TEMP_DIR + CILSBSubmitLocalServiceRequestMod_PI
+	CILSBSubmitLocalServiceRequestMod_OUTPUT_APPLICATION = DIST_DIR + CILSBSubmitLocalServiceRequestMod_EAR
+	CILSBSubmitLocalServiceRequestMod_EXPORT_ENTRIES = [CILSBSubmitLocalServiceRequestMod_NAME, 
+													CILCommonLib_NAME, 
+													CILSBSubmitLocalServiceRequestLib_NAME,
+													CILApplicationUtil_NAME,  
+													StubProjectUtil_NAME,
+													COMSchemaLib_NAME,
+													CILSchemaLib_NAME,
+														OMFSchemaLib_NAME]
+
+	//CILSBThrottleProcessModule - 20180308 updated by Ralph Wang
+	CILSBThrottleProcessModule_NAME = 'CILSBThrottleProcessModule'
+	CILSBThrottleProcessModule_DIR = CODE_DIR + CILSBThrottleProcessModule_NAME + '/'
+	CILSBThrottleProcessModule_TEMP_DIR = TEMP_DIR + CILSBThrottleProcessModule_NAME + '/'
+	CILSBThrottleProcessModule_PI = CILSBThrottleProcessModule_NAME + '.zip'
+	CILSBThrottleProcessModule_EAR = CILSBThrottleProcessModule_NAME + 'App.ear'
+	CILSBThrottleProcessModule_SCA_MODULE = TEMP_DIR + CILSBThrottleProcessModule_PI
+	CILSBThrottleProcessModule_OUTPUT_APPLICATION = DIST_DIR + CILSBThrottleProcessModule_EAR
+	CILSBThrottleProcessModule_EXPORT_ENTRIES = [CILSBThrottleProcessModule_NAME,
+													CILCommonLib_NAME,
+														COMSchemaLib_NAME,
+														CILSchemaLib_NAME,
+														OMFSchemaLib_NAME]
+
+	//CILNBRegistrationRecProcessorMod
+	CILNBRegistrationRecProcessorMod_NAME = 'CILNBRegistrationRecProcessorMod'
+	CILNBRegistrationRecProcessorMod_DIR = CODE_DIR + CILNBRegistrationRecProcessorMod_NAME + '/'
+	CILNBRegistrationRecProcessorMod_TEMP_DIR = TEMP_DIR + CILNBRegistrationRecProcessorMod_NAME + '/'
+	CILNBRegistrationRecProcessorMod_PI = CILNBRegistrationRecProcessorMod_NAME + '.zip'
+	CILNBRegistrationRecProcessorMod_EAR = CILNBRegistrationRecProcessorMod_NAME + 'App.ear'
+	CILNBRegistrationRecProcessorMod_SCA_MODULE = TEMP_DIR + CILNBRegistrationRecProcessorMod_PI
+	CILNBRegistrationRecProcessorMod_OUTPUT_APPLICATION = DIST_DIR + CILNBRegistrationRecProcessorMod_EAR
+	CILNBRegistrationRecProcessorMod_EXPORT_ENTRIES = [CILNBRegistrationRecProcessorMod_NAME,
+														CILNBRegistrationLib_NAME,
+														CILCommonLib_NAME,
+														CILDBAdaptersLib_NAME,
+														CILDBAdaptersV2Lib_NAME,
+														CILSchemaLib_NAME,
+														COMSchemaLib_NAME,
+														BCHSchemaLib_NAME,
+														CILApplicationUtil_NAME,
+														CILROMLib_NAME,
+														CWYFF_FlatFile2_NAME,
+														OMFSchemaLib_NAME]
+
+	CILNBLSCProcessMod_NAME = 'CILNBLSCProcessMod'
+	CILNBLSCProcessMod_DIR = CODE_DIR + CILNBLSCProcessMod_NAME + '/'
+	CILNBLSCProcessMod_TEMP_DIR = TEMP_DIR + CILNBLSCProcessMod_NAME + '/'
+	CILNBLSCProcessMod_PI = CILNBLSCProcessMod_NAME + '.zip'
+	CILNBLSCProcessMod_EAR = CILNBLSCProcessMod_NAME + 'App.ear'
+	CILNBLSCProcessMod_SCA_MODULE = TEMP_DIR + CILNBLSCProcessMod_PI
+	CILNBLSCProcessMod_OUTPUT_APPLICATION = DIST_DIR + CILNBLSCProcessMod_EAR
+	CILNBLSCProcessMod_EXPORT_ENTRIES = [CILNBLSCProcessMod_NAME,
+											CILNBLSCProcessLib_NAME,
+											CILCommonLib_NAME,
+											CILDBAdaptersLib_NAME,
+											CILDBAdaptersV2Lib_NAME,
+											CWYBC_JDBC_NAME,
+											CILSchemaLib_NAME,
+											COMSchemaLib_NAME,
+											CILApplicationUtil_NAME]
+
+	//CILSBVoiceServicesMod
+	CILSBVoiceServicesMod_NAME = 'CILSBVoiceServicesMod'
+	CILSBVoiceServicesMod_DIR = CODE_DIR + CILSBVoiceServicesMod_NAME + '/'
+	CILSBVoiceServicesMod_TEMP_DIR = TEMP_DIR + CILSBVoiceServicesMod_NAME + '/'
+	CILSBVoiceServicesMod_PI = CILSBVoiceServicesMod_NAME + '.zip'
+	CILSBVoiceServicesMod_EAR = CILSBVoiceServicesMod_NAME + 'App.ear'
+	CILSBVoiceServicesMod_SCA_MODULE = TEMP_DIR + CILSBVoiceServicesMod_PI
+	CILSBVoiceServicesMod_OUTPUT_APPLICATION = DIST_DIR + CILSBVoiceServicesMod_EAR
+    CILSBVoiceServicesMod_EXPORT_ENTRIES = [CILSBVoiceServicesMod_NAME,
+											CILCommonLib_NAME,
+											CILSBVoiceServicesLib_NAME,
+											CILSchemaLib_NAME,
+											COMSchemaLib_NAME,
+											BCHSchemaLib_NAME,
+											CILApplicationUtil_NAME,
+											OMFSchemaLib_NAME]
+
+	//CILNBBCHCustomerOrderDetailsMod
+	CILNBBCHCustomerOrderDetailsMod_NAME = 'CILNBBCHCustomerOrderDetailsMod'
+	CILNBBCHCustomerOrderDetailsMod_DIR = CODE_DIR + CILNBBCHCustomerOrderDetailsMod_NAME + '/'
+	CILNBBCHCustomerOrderDetailsMod_TEMP_DIR = TEMP_DIR + CILNBBCHCustomerOrderDetailsMod_NAME + '/'
+	CILNBBCHCustomerOrderDetailsMod_PI = CILNBBCHCustomerOrderDetailsMod_NAME + '.zip'
+	CILNBBCHCustomerOrderDetailsMod_EAR = CILNBBCHCustomerOrderDetailsMod_NAME + 'App.ear'
+	CILNBBCHCustomerOrderDetailsMod_SCA_MODULE = TEMP_DIR + CILNBBCHCustomerOrderDetailsMod_PI
+	CILNBBCHCustomerOrderDetailsMod_OUTPUT_APPLICATION = DIST_DIR + CILNBBCHCustomerOrderDetailsMod_EAR
+	CILNBBCHCustomerOrderDetailsMod_EXPORT_ENTRIES = [CILNBBCHCustomerOrderDetailsMod_NAME,
+														CILNBBCHCustomerOrderDetailsLib_NAME,
+														CILDBAdaptersLib_NAME,
+														CILDBAdaptersV2Lib_NAME,
+														BCHSchemaLib_NAME,
+														CILSBVoiceProvisioningResponseLib_NAME,
+														CILApplicationUtil_NAME,
+														CILCommonLib_NAME,
+															COMSchemaLib_NAME,
+															OMFSchemaLib_NAME,
+															CILSchemaLib_NAME]
+
+	//CILNBAutoCompleteBatchModule - 20180308 updated by Ralph Wang
+	CILNBAutoCompleteBatchModule_NAME = 'CILNBAutoCompleteBatchModule'
+	CILNBAutoCompleteBatchModule_DIR = CODE_DIR + CILNBAutoCompleteBatchModule_NAME + '/'
+	CILNBAutoCompleteBatchModule_TEMP_DIR = TEMP_DIR + CILNBAutoCompleteBatchModule_NAME + '/'
+	CILNBAutoCompleteBatchModule_PI = CILNBAutoCompleteBatchModule_NAME + '.zip'
+	CILNBAutoCompleteBatchModule_EAR = CILNBAutoCompleteBatchModule_NAME + 'App.ear'
+	CILNBAutoCompleteBatchModule_SCA_MODULE = TEMP_DIR + CILNBAutoCompleteBatchModule_PI
+	CILNBAutoCompleteBatchModule_OUTPUT_APPLICATION = DIST_DIR + CILNBAutoCompleteBatchModule_EAR
+	CILNBAutoCompleteBatchModule_EXPORT_ENTRIES = [CILNBAutoCompleteBatchModule_NAME,
+													CILDBAdaptersV2Lib_NAME,
+													CILNBCOMNotificationLib_NAME,
+													COMSchemaLib_NAME,
+													BCHSchemaLib_NAME,
+													CILApplicationUtil_NAME,
+													CILCommonLib_NAME,
+														COMSchemaLib_NAME,
+														OMFSchemaLib_NAME,
+														CILSchemaLib_NAME]
+
+	//VoiceBPMStub
+	VoiceBPMStub_NAME = 'VoiceBPMStub'
+	VoiceBPMStub_DIR = CODE_DIR + VoiceBPMStub_NAME + '/'
+	VoiceBPMStub_TEMP_DIR = TEMP_DIR + VoiceBPMStub_NAME + '/'
+	VoiceBPMStub_PI = VoiceBPMStub_NAME + '.zip'
+	VoiceBPMStub_EAR = VoiceBPMStub_NAME + 'App.ear'
+	VoiceBPMStub_SCA_MODULE = TEMP_DIR + VoiceBPMStub_PI
+	VoiceBPMStub_OUTPUT_APPLICATION = DIST_DIR + VoiceBPMStub_EAR
+	VoiceBPMStub_EXPORT_ENTRIES = [VoiceBPMStub_NAME,
+									VoiceBPMStubWeb_NAME,
+									CILCommonLib_NAME,
+									COMSchemaLib_NAME,
+									OMFSchemaLib_NAME,
+									CILSchemaLib_NAME]
+	
+	//CILNBBillingCustomerOrderProcess
+	CILNBBillingCustomerOrderProcess_NAME = 'CILNBBillingCustomerOrderProcess'
+	CILNBBillingCustomerOrderProcess_DIR = CODE_DIR + CILNBBillingCustomerOrderProcess_NAME + '/'
+	CILNBBillingCustomerOrderProcess_TEMP_DIR = TEMP_DIR + CILNBBillingCustomerOrderProcess_NAME + '/'
+	CILNBBillingCustomerOrderProcess_PI = CILNBBillingCustomerOrderProcess_NAME + '.zip'
+	CILNBBillingCustomerOrderProcess_EAR = CILNBBillingCustomerOrderProcess_NAME + 'App.ear'
+	CILNBBillingCustomerOrderProcess_SCA_MODULE = TEMP_DIR + CILNBBillingCustomerOrderProcess_PI
+	CILNBBillingCustomerOrderProcess_OUTPUT_APPLICATION = DIST_DIR + CILNBBillingCustomerOrderProcess_EAR
+	CILNBBillingCustomerOrderProcess_EXPORT_ENTRIES = [CILNBBillingCustomerOrderProcess_NAME,
+														CILNBBCHCustomerOrderLib_NAME,
+														CILBREEHandlerLib_NAME,
+														CILApplicationUtil_NAME,
+														CILDBAdaptersV2Lib_NAME,
+														CILDBAdaptersLib_NAME,
+														BCHSchemaLib_NAME,	
+														CILCommonLib_NAME,
+															COMSchemaLib_NAME,
+															OMFSchemaLib_NAME,
+															CILSchemaLib_NAME]
+
+	//CILStuckOrderMed - 20180220
+	CILStuckOrderMed_NAME = 'CILStuckOrderMed'
+	CILStuckOrderMed_DIR = CODE_DIR + CILStuckOrderMed_NAME + '/'
+	CILStuckOrderMed_TEMP_DIR = TEMP_DIR + CILStuckOrderMed_NAME + '/'
+	CILStuckOrderMed_PI = CILStuckOrderMed_NAME + '.zip'
+	CILStuckOrderMed_EAR = CILStuckOrderMed_NAME + 'App.ear'
+	CILStuckOrderMed_SCA_MODULE = TEMP_DIR + CILStuckOrderMed_PI
+	CILStuckOrderMed_OUTPUT_APPLICATION = DIST_DIR + CILStuckOrderMed_EAR
+	CILStuckOrderMed_EXPORT_ENTRIES = [CILStuckOrderMed_NAME,
+										CILStuckOrderLib_NAME,
+										CILCommonLib_NAME,
+										CILApplicationUtil_NAME,
+										CILDBAdaptersV2Lib_NAME,
+										CILStuckOrderLib_NAME,
+											COMSchemaLib_NAME,
+											OMFSchemaLib_NAME,
+											CILSchemaLib_NAME]
+
+	//CILSBWirelessProvisioningMod - 20180308 by Ralph Wang
+	CILSBWirelessProvisioningMod_NAME = 'CILSBWirelessProvisioningMod'
+	CILSBWirelessProvisioningMod_DIR = CODE_DIR + CILSBWirelessProvisioningMod_NAME + '/'
+	CILSBWirelessProvisioningMod_TEMP_DIR = TEMP_DIR + CILSBWirelessProvisioningMod_NAME + '/'
+	CILSBWirelessProvisioningMod_PI = CILSBWirelessProvisioningMod_NAME + '.zip'
+	CILSBWirelessProvisioningMod_EAR = CILSBWirelessProvisioningMod_NAME + 'App.ear'
+	CILSBWirelessProvisioningMod_SCA_MODULE = TEMP_DIR + CILSBWirelessProvisioningMod_PI
+	CILSBWirelessProvisioningMod_OUTPUT_APPLICATION = DIST_DIR + CILSBWirelessProvisioningMod_EAR
+	CILSBWirelessProvisioningMod_EXPORT_ENTRIES = [CILSBWirelessProvisioningMod_NAME,
+													CILCommonLib_NAME,
+													CILApplicationUtil_NAME,
+													CILDBAdaptersV2Lib_NAME,
+													CILSchemaLib_NAME,
+													COMSchemaLib_NAME,
+													CILSBWirelessProvisioningLib_NAME,
+														OMFSchemaLib_NAME]
+}

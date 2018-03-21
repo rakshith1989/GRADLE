@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Class-Path: copiedjars/CILApplicationUtil/lib/saxon9-xqj.jar 
+ CILSchemaLib.jar 
+ copiedjars/CILApplicationUtil/lib/log4j-core-2.8.1.jar 
+ copiedjars/CILApplicationUtil/lib/jdom-2.0.2.jar 
+ BCHSchemaLib.jar 
+ copiedjars/CILApplicationUtil/lib/saxon9he.jar 
+ copiedjars/CILApplicationUtil/lib/saxon9-test.jar 
+ CILApplicationUtil.jar 
+ copiedjars/CILApplicationUtil/lib/log4j-api-2.8.1.jar 
+ CILSBVoiceServicesLib.jar 
+ COMSchemaLib.jar 
+ CILCommonLib.jar
+Created-By: 1.5.0 (IBM Corporation)
+

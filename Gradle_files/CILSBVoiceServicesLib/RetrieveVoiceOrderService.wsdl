@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="RetrieveVoiceOrderService" targetNamespace="http://CILSBVoiceServicesLib/RetrieveVoiceOrderService" xmlns:tns="http://CILSBVoiceServicesLib/RetrieveVoiceOrderService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+    <xsd:schema targetNamespace="http://CILSBVoiceServicesLib/RetrieveVoiceOrderService">
+      <xsd:import schemaLocation="OrderDetailsResponse.xsd"/>
+      <xsd:import schemaLocation="OrderDetailsRequest.xsd"/>
+      <xsd:element name="retrieveVoiceOrder">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="orderDetailsRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="retrieveVoiceOrderResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="orderDetailsResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+    <wsdl:message name="retrieveVoiceOrderRequestMsg">
+    <wsdl:part element="tns:retrieveVoiceOrder" name="retrieveVoiceOrderParameters"/>
+  </wsdl:message>
+    <wsdl:message name="retrieveVoiceOrderResponseMsg">
+    <wsdl:part element="tns:retrieveVoiceOrderResponse" name="retrieveVoiceOrderResult"/>
+  </wsdl:message>
+    <wsdl:portType name="RetrieveVoiceOrderService">
+    <wsdl:operation name="retrieveVoiceOrder">
+      <wsdl:input message="tns:retrieveVoiceOrderRequestMsg" name="retrieveVoiceOrderRequest"/>
+      <wsdl:output message="tns:retrieveVoiceOrderResponseMsg" name="retrieveVoiceOrderResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

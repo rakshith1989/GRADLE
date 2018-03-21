@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:CILCommonLib="http://CILCommonLib" xmlns:RetrieveVoiceOrderService="http://CILSBVoiceServicesLib/RetrieveVoiceOrderService" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" name="RetrieveVoiceOrderMed" targetNamespace="http://CILSBVoiceServicesMod/RetrieveVoiceOrderMed">
+  <import location="CILCommonDSMediationIF.wsdl" namespace="http://CILCommonLib"/>
+  <import location="RetrieveVoiceOrderService.wsdl" namespace="http://CILSBVoiceServicesLib/RetrieveVoiceOrderService"/>
+  <reference name="RetrieveVoiceOrderServicePartner" portType="RetrieveVoiceOrderService:RetrieveVoiceOrderService"/>
+  <interface portType="CILCommonLib:CILCommonDSMediationIF">
+    <operation name="invokeDownStream">
+      <requestFlow>
+        <node displayName="invokeDownStream : CILCommonDSMediationIF" name="CILCommonDSMediationIF_invokeDownStream_Input" type="Input">
+          <property name="transientContext" value="{http://CILSBVoiceServicesLib}VoiceOrderTransientContext"/>
+          <outputTerminal type="CILCommonLib:invokeDownStreamRequestMsg">
+            <wire targetNode="RetrieveVoiceOrderDataHandler1"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invokeDownStream : CILCommonDSMediationIF" name="CILCommonDSMediationIF_invokeDownStream_InputResponse" type="InputResponse">
+          <inputTerminal type="CILCommonLib:invokeDownStreamResponseMsg"/>
+        </node>
+        <node displayName="RetrieveVoiceOrderDataHandler" name="RetrieveVoiceOrderDataHandler1" type="DataHandler">
+          <property name="dataHandlerConfig" value="{http://www.ibm.com/xmlns/prod/websphere/j2ca/configuration/6.1.0}UTF8XMLDataHandler"/>
+          <property name="sourceXPath" value="/body/invokeDownStream/downStreamMediationInputBO/requestDetailString"/>
+          <property name="targetXPath" value="/context/transient/orderDetailsRequest"/>
+          <inputTerminal/>
+          <outputTerminal explicitType="false" type="CILCommonLib:invokeDownStreamRequestMsg">
+            <wire targetNode="RetrieveVoiceOrderReq"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node displayName="Invoke RetrieveVoiceOrder" name="Invoke_RetrieveVoiceOrder" type="ServiceInvoke">
+          <property name="referenceName" value="RetrieveVoiceOrderServicePartner"/>
+          <property name="operationName" value="retrieveVoiceOrder"/>
+          <property name="invocationStyle" value="6"/>
+          <inputTerminal type="RetrieveVoiceOrderService:retrieveVoiceOrderRequestMsg"/>
+          <outputTerminal type="RetrieveVoiceOrderService:retrieveVoiceOrderResponseMsg">
+            <wire targetNode="SetMessageResponse"/>
+          </outputTerminal>
+          <outputTerminal name="timeout" type="RetrieveVoiceOrderService:retrieveVoiceOrderRequestMsg">
+            <wire targetNode="Timeout_Setter"/>
+          </outputTerminal>
+          <failTerminal>
+            <wire targetNode="SYSTEM_NOT_AVAILABLE_mapping"/>
+          </failTerminal>
+        </node>
+        <node name="RetrieveVoiceOrderReq" type="XSLTransformation">
+          <property name="root" value="/"/>
+          <property name="XSLTransform" value="xslt/RetrieveVoiceOrderReq.xsl"/>
+          <property name="XMXMap" value="xslt/RetrieveVoiceOrderReq.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="CILCommonLib:invokeDownStreamRequestMsg"/>
+          <outputTerminal type="RetrieveVoiceOrderService:retrieveVoiceOrderRequestMsg">
+            <wire targetNode="Invoke_RetrieveVoiceOrder"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node name="Timeout_Setter" type="MessageElementSetter">
+          <table name="messageElements">
+            <row>
+              <property name="target" value="/context/transient/errorRuleType"/>
+              <property name="type" value="{http://www.w3.org/2001/XMLSchema}string"/>
+              <property name="value" value="TIMEOUT"/>
+            </row>
+          </table>
+          <inputTerminal type="XMLSchema:anyType"/>
+          <outputTerminal>
+            <wire targetNode="FinalDSResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node name="FinalDSResponse" type="XSLTransformation">
+          <property name="root" value="/"/>
+          <property name="XSLTransform" value="xslt/VoiceOrderFinalDSResponse.xsl"/>
+          <property name="XMXMap" value="xslt/VoiceOrderFinalDSResponse.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="XMLSchema:anyType"/>
+          <outputTerminal type="CILCommonLib:invokeDownStreamResponseMsg">
+            <wire targetNode="CILCommonDSMediationIF_invokeDownStream_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node displayName="SYSTEM_NOT_AVAILABLE mapping" name="SYSTEM_NOT_AVAILABLE_mapping" type="CustomMediation">
+          <property name="javaCode"><![CDATA[
+String channelRequestId = "";
+int cilProcessId = 0;
+int cilRequestId = 0;
+COMLogger comLogger = ca.cgi.com.logging.COMLogger.getInstance("ReceiveCreditRequest");
+String relatedSystem = CILConstants.CSIDE_NM1;
+
+try{
+	DataObject failInfo = smo.getDataObject("/context/failInfo");
+	String failureString;
+	
+	if(failInfo!=null){
+		BOFactory boFactory = (BOFactory) new com.ibm.websphere.sca.ServiceManager().locateService("com/ibm/websphere/bo/BOFactory");
+		DataObject newBody = boFactory.createByMessage ("http://CILCommonLib", "invokeDownStreamResponseMsg");
+				
+		channelRequestId = smo.getString("/context/transient/info/HOI");
+		cilRequestId = Integer.parseInt(smo.getString("/context/transient/info/requestId"));
+		cilProcessId = Integer.parseInt(smo.getString("/context/transient/info/comProcessId"));
+		
+		failureString = smo.getString("/context/failInfo/failureString");
+		
+		comLogger.error(relatedSystem, channelRequestId, cilProcessId, cilRequestId, "FailureString: " + failureString);
+
+
+
+
+
+
+		System.out.println("b4 newBody.setDataObject");
+		
+		DataObject invokeDownStreamResponse = newBody.createDataObject("invokeDownStreamResponse");
+		DataObject downStreamMediationOutput = invokeDownStreamResponse.createDataObject("downStreamMediationOutput"); 
+		downStreamMediationOutput.setString("errorRuleType", "SYSTEM_NOT_AVAILABLE");
+		
+		DataObject responseMessageList = downStreamMediationOutput.createDataObject("responseMessageList");
+		
+		List errorMessageList  = new ArrayList();
+	
+		DataObject errorMessageBo = boFactory.create(null, "messageDetailType");
+	//	errorMessageBo.setString("code",code);
+		errorMessageBo.setString("messageEnglish",failureString);
+	//	errorMessageBo.setString("messageFrench",msgFrench);
+		
+		errorMessageList.add(errorMessageBo);
+		responseMessageList.setList("messageDetail", errorMessageList);
+		
+		smo.setBody(newBody);
+	}else{	
+		out.fire(smo); // propagate the service message object to the primitive that is wired to the 'out' terminal
+	}
+}
+catch(Exception e)
+{
+	e.printStackTrace();
+	comLogger.error(relatedSystem, channelRequestId, cilProcessId, cilRequestId, "EXCEPTION: " + e.toString());
+	out.fire(smo); // propagate the service message object to the primitive that is wired to the 'out' terminal	
+}
+
+]]></property>
+          <property name="javaClass" value="sca.component.mediation.java.Custom1513688782584"/>
+          <property name="version" value="6.1.0"/>
+          <property name="javaImports" value="com.ibm.websphere.bo.BOFactory;java.util.List;commonj.sdo.DataObject;java.util.ArrayList;ca.cgi.com.logging.COMLogger;ca.cgi.com.constants.CILConstants"/>
+          <inputTerminal/>
+          <outputTerminal explicitType="false" type="XMLSchema:anyType">
+            <wire targetNode="FinalDSResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node name="SetMessageResponse" type="MessageElementSetter">
+          <table name="messageElements">
+            <row>
+              <property name="target" value="/context/transient/orderDetailsResponse"/>
+              <property name="type" value="copy"/>
+              <property name="value" value="/body/retrieveVoiceOrderResponse/orderDetailsResponse"/>
+            </row>
+            <row>
+              <property name="target" value="/context/transient/errorRuleType"/>
+              <property name="type" value="{http://www.w3.org/2001/XMLSchema}string"/>
+              <property name="value" value="RESPONSE_PAYLOAD"/>
+            </row>
+          </table>
+          <inputTerminal/>
+          <outputTerminal>
+            <wire targetNode="ConvertDataObjectToString"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node name="Response_Mapping" type="XSLTransformation">
+          <property name="root" value="/"/>
+          <property name="XSLTransform" value="xslt/Response_Mapping.xsl"/>
+          <property name="XMXMap" value="xslt/Response_Mapping.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="RetrieveVoiceOrderService:retrieveVoiceOrderResponseMsg"/>
+          <outputTerminal type="RetrieveVoiceOrderService:retrieveVoiceOrderResponseMsg">
+            <wire targetNode="FinalDSResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node name="CustomMediation1" type="CustomMediation">
+          <property name="javaCode"><![CDATA[
+ 
+ 
+smo.getDataObject("context").getDataObject("transient").setString("responseDetailString",ComUtil.convertDataObjectToString(smo.getDataObject("body").getDataObject("retrieveVoiceOrderResponse").getDataObject("orderDetailsResponse")));
+out.fire(smo); // propagate the service message object to the primitive that is wired to the 'out' terminal]]></property>
+          <property name="javaClass" value="sca.component.mediation.java.Custom1520575587424"/>
+          <property name="version" value="6.1.0"/>
+          <property name="javaImports" value="ca.cgi.com.util.ComUtil"/>
+          <inputTerminal/>
+          <outputTerminal explicitType="false" type="RetrieveVoiceOrderService:retrieveVoiceOrderResponseMsg">
+            <wire targetNode="Response_Mapping"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node name="ConvertDataObjectToString" type="DataHandler">
+          <property name="dataHandlerConfig" value="{http://www.ibm.com/xmlns/prod/websphere/j2ca/configuration/6.1.0}UTF8XMLDataHandler"/>
+          <property name="action" value="1"/>
+          <property name="sourceXPath" value="/body/retrieveVoiceOrderResponse/orderDetailsResponse"/>
+          <property name="targetXPath" value="/context/transient/responseDetailString"/>
+          <inputTerminal/>
+          <outputTerminal explicitType="false" type="RetrieveVoiceOrderService:retrieveVoiceOrderResponseMsg">
+            <wire targetNode="FinalDSResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <errorFlow>
+        <node displayName="invokeDownStream : CILCommonDSMediationIF" name="CILCommonDSMediationIF_invokeDownStream_ErrorInput" type="ErrorInput">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="Trace1"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invokeDownStream : CILCommonDSMediationIF" name="CILCommonDSMediationIF_invokeDownStream_InputResponse" type="InputResponse">
+          <inputTerminal type="CILCommonLib:invokeDownStreamResponseMsg"/>
+        </node>
+        <node name="Trace1" type="Trace">
+          <inputTerminal/>
+          <outputTerminal/>
+          <failTerminal/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>

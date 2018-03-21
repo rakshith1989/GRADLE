@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" targetNamespace="http://CILSBVoiceServicesMod/xslt/RetrieveVoiceProfileReq" version="8.0.4.0" xmlns:map="http://CILSBVoiceServicesMod/xslt/RetrieveVoiceProfileReq">
+    <input correlationContext="" message="{http://CILCommonLib}invokeDownStreamRequestMsg" sharedContext="" smoName="wsdl-primary" transientContext="{http://CILSBVoiceServicesLib}VoiceProfileTransientContext" type="smo" types="" xpath="/"/>
+    <output correlationContext="" message="{http://CILSBVoiceServicesLib/VoiceServicesIF}retrieveVoiceProfileRequestMsg" sharedContext="" smoName="wsdl-primary" transientContext="{http://CILSBVoiceServicesLib}VoiceProfileTransientContext" type="smo" types="" xpath="/"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="in2" uri="http://CILCommonLib"/>
+        <namespace kind="supplement" prefix="in3" uri="wsdl.http://CILCommonLib"/>
+        <namespace kind="supplement" prefix="io5" uri="http://CILSBVoiceServicesLib"/>
+        <namespace kind="supplement" prefix="io4" uri="http://www.w3.org/2003/05/soap-envelope"/>
+        <namespace kind="supplement" prefix="io3" uri="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0"/>
+        <namespace kind="supplement" prefix="io2" uri="http://www.ibm.com/websphere/sibx/smo/v6.0.1"/>
+        <namespace kind="supplement" prefix="io6" uri="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"/>
+        <namespace kind="supplement" prefix="io7" uri="http://www.w3.org/2005/08/addressing"/>
+        <namespace kind="supplement" prefix="in" uri="http://CILCommonLib/HeaderAdditionalInfoBO"/>
+        <namespace kind="supplement" prefix="io" uri="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        <namespace kind="supplement" prefix="out2" uri="http://CILSBVoiceServicesLib/VoiceServicesIF"/>
+        <namespace kind="supplement" prefix="out" uri="wsdl.http://CILSBVoiceServicesLib/VoiceServicesIF"/>
+    </namespaces>
+    <mappingDeclaration name="RetrieveVoiceProfileReq">
+        <input namespace="http://www.ibm.com/websphere/sibx/smo/v6.0.1" path="smo"/>
+        <output namespace="http://www.ibm.com/websphere/sibx/smo/v6.0.1" path="smo"/>
+        <move>
+            <input path="context/transient/customerProfileQueryRequest"/>
+            <output path="body/retrieveVoiceProfile/customerProfileQueryRequest"/>
+        </move>
+        <assign>
+            <output path="context/transient/responseDetailString"/>
+        </assign>
+        <create>
+            <output path="context/transient/custProfileQueryResponse"/>
+        </create>
+        <move>
+            <input path="body/invokeDownStream/downStreamMediationInputBO/endPoint"/>
+            <output path="headers/SMOHeader/Target/address"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>
